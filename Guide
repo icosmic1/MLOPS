@@ -1,0 +1,551 @@
+# 🚀 MLOps Career Roadmap 2027–2030: Top-Tier Engineer Edition
+## Java Backend Engineer → Senior MLOps / AI Platform Engineer
+### 24-Week Intensive Program with Curated Resources
+
+---
+
+## 🎯 ROADMAP PHILOSOPHY (2027–2030)
+
+By 2027, MLOps = **LLMOps + AgentOps + Platform Engineering + FinOps**.
+Target outcome: **Senior MLOps / AI Platform Engineer** at $150K–$280K (US) / ₹35–80 LPA (India) / €90K–€150K (EU).
+
+---
+
+## 📋 WEEK 0 — PREREQUISITES & SETUP
+
+### Essential Tooling Documentation
+- **uv (Python package manager):** https://docs.astral.sh/uv/
+- **OrbStack (Docker replacement):** https://orbstack.dev/
+- **Cursor IDE:** https://cursor.com/
+- **VS Code:** https://code.visualstudio.com/
+- **Docker Docs:** https://docs.docker.com/
+- **kubectl install:** https://kubernetes.io/docs/tasks/tools/
+- **Helm:** https://helm.sh/docs/intro/install/
+- **k9s (K8s terminal UI):** https://k9scli.io/
+- **OpenTofu install:** https://opentofu.org/docs/intro/install/
+- **AWS CLI:** https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+- **gcloud CLI:** https://cloud.google.com/sdk/docs/install
+- **Hugging Face CLI:** https://huggingface.co/docs/huggingface_hub/en/guides/cli
+- **Ollama install:** https://ollama.com/download
+
+### Free Account Signups
+- **GitHub + Copilot:** https://github.com/features/copilot
+- **Hugging Face:** https://huggingface.co/join
+- **AWS Free Tier:** https://aws.amazon.com/free/
+- **Google Cloud Free Tier:** https://cloud.google.com/free
+- **Modal.com:** https://modal.com/
+- **Weights & Biases:** https://wandb.ai/site
+- **LangSmith:** https://smith.langchain.com/
+- **LangFuse (self-host or cloud):** https://langfuse.com/
+- **Anthropic Console:** https://console.anthropic.com/
+- **Together.ai:** https://www.together.ai/
+- **Groq Cloud:** https://console.groq.com/
+- **Fireworks.ai:** https://fireworks.ai/
+- **RunPod:** https://www.runpod.io/
+- **Lambda Labs:** https://lambdalabs.com/
+- **Vast.ai:** https://vast.ai/
+
+### Pre-Course YouTube Watch List
+- **The State of MLOps 2024 — MLOps Community:** https://www.youtube.com/@MLOpsCommunity
+- **Latent Space Podcast (audio + video):** https://www.youtube.com/@LatentSpacePod
+- **Chip Huyen — AI Engineering Talk:** https://www.youtube.com/watch?v=5zE2sMka620
+
+---
+
+# PHASE 1: MODERN FOUNDATIONS (Weeks 1–3)
+
+## WEEK 1 — Python 3.12+ & Modern Tooling
+
+| Day | Topic | YouTube / Resource | Hands-On Setup |
+|---|---|---|---|
+| **Day 1** | uv + modern Python project setup | [Replace Pip and Poetry with uv — ArjanCodes](https://www.youtube.com/watch?v=igWlYl3asKw) + [uv docs](https://docs.astral.sh/uv/) | `uv init`, `uv add fastapi`, `uv sync` |
+| **Day 2** | Async Python deep dive | [AsyncIO Full Tutorial — ArjanCodes](https://www.youtube.com/watch?v=2IW-ZEui4h4) + [Real Python AsyncIO](https://realpython.com/async-io-python/) | Build async web scraper with `httpx.AsyncClient` |
+| **Day 3** | Pydantic v2 mastery | [Pydantic v2 Tutorial — ArjanCodes](https://www.youtube.com/watch?v=502XOB0u8OY) + [Pydantic docs](https://docs.pydantic.dev/latest/) | Port Java POJO → Pydantic models |
+| **Day 4** | Modern project structure (ruff, mypy, pre-commit) | [Python Project Structure 2024 — ArjanCodes](https://www.youtube.com/watch?v=q8DkatMZvUs) + [Ruff docs](https://docs.astral.sh/ruff/) | Set up `pyproject.toml`, ruff, mypy, pre-commit |
+| **Day 5** | Polars (replaces Pandas) | [Polars Crash Course — Rob Mulla](https://www.youtube.com/watch?v=CtqXCAkBpJg) + [Polars docs](https://docs.pola.rs/) | 1GB CSV processing benchmark vs Pandas |
+| **Day 6** | DuckDB for analytics | [DuckDB Tutorial — MotherDuck](https://www.youtube.com/watch?v=ZX5FdqzGT1E) + [DuckDB docs](https://duckdb.org/docs/) | Parquet → DuckDB → Polars pipeline |
+| **Day 7** | **MINI PROJECT** | — | Async data ingestion service. Push to GitHub. |
+
+**Bonus Reading:**
+- *Fluent Python* (Luciano Ramalho, 2nd Ed): https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/
+- **Real Python:** https://realpython.com/
+
+---
+
+## WEEK 2 — ML & Deep Learning Essentials
+
+| Day | Topic | YouTube / Resource | Hands-On |
+|---|---|---|---|
+| **Day 8** | ML lifecycle 2027 | [Machine Learning for Everybody — freeCodeCamp](https://www.youtube.com/watch?v=i_LwzRVP7bg) | Tabular models: scikit-learn + XGBoost |
+| **Day 9** | PyTorch 2.x + torch.compile | [PyTorch 2.0 Tutorial — Aleksa Gordić](https://www.youtube.com/watch?v=FB8wbtv70zI) + [PyTorch docs](https://pytorch.org/docs/) | CIFAR-10 CNN with `torch.compile` |
+| **Day 10** | Hugging Face Transformers | [HF Transformers Course (free)](https://huggingface.co/learn/nlp-course) + [NLP Zero to Hero — HF](https://www.youtube.com/playlist?list=PLo2EIpI_JMQvWfQndUesu0nPBAtZ9gP1o) | Fine-tune DistilBERT |
+| **Day 11** | Embeddings + vector search | [Sentence Transformers Tutorial](https://www.youtube.com/watch?v=mrYBdEMm8wA) + [SBERT docs](https://www.sbert.net/) | Semantic search over 10K docs |
+| **Day 12** | LLM-era evaluation | [Ragas docs](https://docs.ragas.io/) + [DeepEval docs](https://docs.confident-ai.com/) | Build eval harness with LLM-as-judge |
+| **Day 13** | Responsible AI + Model Cards | [Fairlearn docs](https://fairlearn.org/) + [Model Card Toolkit](https://github.com/tensorflow/model-card-toolkit) | Generate fairness report + model card |
+| **Day 14** | **MINI PROJECT** | — | E2E classifier with fairness report |
+
+**Key Course (highly recommended):**
+- ⭐ **DataTalks.Club ML Zoomcamp (free, with cert):** https://github.com/DataTalksClub/machine-learning-zoomcamp
+
+---
+
+## WEEK 3 — Containers & Modern Dev Environments
+
+| Day | Topic | YouTube / Resource | Hands-On |
+|---|---|---|---|
+| **Day 15** | OrbStack + BuildKit | [Docker Crash Course — TechWorld with Nana](https://www.youtube.com/watch?v=pg19Z8LL06w) + [OrbStack docs](https://docs.orbstack.dev/) | Multi-arch build, push to GHCR |
+| **Day 16** | Dev Containers / Codespaces | [Dev Containers Docs](https://containers.dev/) + [GitHub Codespaces](https://github.com/features/codespaces) | `.devcontainer/devcontainer.json` |
+| **Day 17** | Distroless + multi-stage | [Distroless images — Google](https://github.com/GoogleContainerTools/distroless) | <300MB ML image |
+| **Day 18** | Trivy, Cosign, SBOM | [Sigstore Cosign docs](https://docs.sigstore.dev/cosign/) + [Trivy docs](https://aquasecurity.github.io/trivy/) | Sign + scan + SBOM |
+| **Day 19** | Docker Compose v2 profiles | [Compose Profiles docs](https://docs.docker.com/compose/profiles/) | dev/test/prod profiles |
+| **Day 20** | GPU containers | [Nvidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) | Run vLLM container w/ GPU |
+| **Day 21** | **MINI PROJECT** | — | Signed, scanned, GPU-enabled ML image |
+
+---
+
+# PHASE 2: CLOUD-NATIVE INFRASTRUCTURE (Weeks 4–7)
+
+## WEEK 4 — Kubernetes Mastery
+
+| Day | Topic | YouTube / Resource |
+|---|---|---|
+| **Day 22** | K8s architecture | [Kubernetes Full Course — TechWorld with Nana](https://www.youtube.com/watch?v=X48VuDVv0do) + [K8s docs](https://kubernetes.io/docs/) |
+| **Day 23** | Deployments/StatefulSets/Jobs | [k3d docs](https://k3d.io/) + [K8s tutorials](https://kubernetes.io/docs/tutorials/) |
+| **Day 24** | Gateway API + cert-manager | [Gateway API docs](https://gateway-api.sigs.k8s.io/) + [cert-manager](https://cert-manager.io/docs/) |
+| **Day 25** | Helm + Kustomize | [Helm Tutorial — Nana](https://www.youtube.com/watch?v=-ykwb1d0DXU) + [Kustomize docs](https://kustomize.io/) |
+| **Day 26** | RBAC + Network Policies + Pod Security | [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/) |
+| **Day 27** | KEDA auto-scaling | [KEDA docs](https://keda.sh/docs/latest/) + [KEDA YouTube](https://www.youtube.com/watch?v=l2JIBXckUNw) |
+| **Day 28** | **MINI PROJECT** | Production K8s deployment |
+
+**Free Cert Prep:** [CKAD Practice — KodeKloud free tier](https://kodekloud.com/courses/certified-kubernetes-application-developer-ckad/)
+
+---
+
+## WEEK 5 — Infrastructure as Code & GitOps
+
+| Day | Topic | YouTube / Resource |
+|---|---|---|
+| **Day 29** | OpenTofu / Terraform | [Terraform Course — freeCodeCamp](https://www.youtube.com/watch?v=SLB_c_ayRMo) + [OpenTofu docs](https://opentofu.org/docs/) |
+| **Day 30** | Terragrunt | [Terragrunt docs](https://terragrunt.gruntwork.io/) |
+| **Day 31** | Pulumi (Python IaC) | [Pulumi YouTube](https://www.youtube.com/@PulumiTV) + [Pulumi docs](https://www.pulumi.com/docs/) |
+| **Day 32** | ArgoCD | [ArgoCD Tutorial — TechWorld with Nana](https://www.youtube.com/watch?v=MeU5_k9ssrs) + [ArgoCD docs](https://argo-cd.readthedocs.io/) |
+| **Day 33** | Flux CD + Flagger | [Flux docs](https://fluxcd.io/) + [Flagger docs](https://flagger.app/) |
+| **Day 34** | Crossplane | [Crossplane docs](https://docs.crossplane.io/) + [Crossplane YouTube](https://www.youtube.com/@Crossplane) |
+| **Day 35** | **MINI PROJECT** | Full GitOps stack |
+
+---
+
+## WEEK 6 — Cloud ML Platforms
+
+| Day | Topic | Resource |
+|---|---|---|
+| **Day 36** | AWS Bedrock | [Bedrock Workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/a4bdb007-5600-4368-81c5-ff5b4154f518) + [Bedrock docs](https://docs.aws.amazon.com/bedrock/) |
+| **Day 37** | SageMaker Pipelines | [SageMaker Examples GitHub](https://github.com/aws/amazon-sagemaker-examples) + [SageMaker Immersion Day](https://catalog.workshops.aws/sagemaker-immersion-day/en-US) |
+| **Day 38** | Vertex AI + Gemini | [Vertex AI docs](https://cloud.google.com/vertex-ai/docs) + [Generative AI on Vertex codelabs](https://codelabs.developers.google.com/?category=aiandmachinelearning) |
+| **Day 39** | EKS vs GKE Autopilot | [EKS Workshop](https://www.eksworkshop.com/) + [GKE Autopilot docs](https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-overview) |
+| **Day 40** | Modal.com | [Modal docs](https://modal.com/docs) + [Modal Examples](https://github.com/modal-labs/modal-examples) |
+| **Day 41** | RunPod / Lambda Labs | [RunPod docs](https://docs.runpod.io/) + [Lambda Labs docs](https://docs.lambdalabs.com/) |
+| **Day 42** | **MINI PROJECT** | Multi-cloud cost analysis |
+
+---
+
+## WEEK 7 — Workflow Orchestration
+
+| Day | Topic | Resource |
+|---|---|---|
+| **Day 43** | Prefect 3.x | [Prefect docs](https://docs.prefect.io/) + [Prefect YouTube](https://www.youtube.com/@PrefectIO) |
+| **Day 44** | Airflow 2.10+ | [Apache Airflow docs](https://airflow.apache.org/docs/) + [Astronomer Academy (free)](https://academy.astronomer.io/) |
+| **Day 45** | Dagster | [Dagster docs](https://docs.dagster.io/) + [Dagster University (free)](https://courses.dagster.io/) |
+| **Day 46** | Kubeflow Pipelines v2 | [Kubeflow docs](https://www.kubeflow.org/docs/) + [KFP docs](https://www.kubeflow.org/docs/components/pipelines/) |
+| **Day 47** | Argo Workflows | [Argo Workflows docs](https://argoproj.github.io/argo-workflows/) |
+| **Day 48** | Metaflow | [Metaflow docs](https://docs.metaflow.org/) + [Outerbounds tutorials](https://outerbounds.com/docs/) |
+| **Day 49** | **MINI PROJECT** | End-to-end retraining pipeline |
+
+---
+
+# PHASE 3: LLMOPS & MODERN AI STACK (Weeks 8–13)
+
+## WEEK 8 — LLM Serving & Inference Optimization
+
+| Day | Topic | Resource |
+|---|---|---|
+| **Day 50** | LLM inference landscape | [LLM Inference Survey — Hugging Face blog](https://huggingface.co/blog/llm-inference) |
+| **Day 51** | vLLM | [vLLM docs](https://docs.vllm.ai/) + [vLLM GitHub](https://github.com/vllm-project/vllm) |
+| **Day 52** | PagedAttention deep dive | [vLLM paper](https://arxiv.org/abs/2309.06180) + [Efficient LLM Serving — Anyscale](https://www.youtube.com/watch?v=5ZlavKF_98U) |
+| **Day 53** | Quantization (GPTQ/AWQ/GGUF) | [llama.cpp GitHub](https://github.com/ggerganov/llama.cpp) + [Quantization Guide — HF](https://huggingface.co/docs/transformers/main/en/quantization) |
+| **Day 54** | Speculative decoding | [vLLM Spec Decoding docs](https://docs.vllm.ai/en/latest/usage/spec_decode.html) |
+| **Day 55** | TGI | [HF Text Generation Inference](https://github.com/huggingface/text-generation-inference) |
+| **Day 56** | Ollama + LiteLLM | [Ollama docs](https://github.com/ollama/ollama) + [LiteLLM docs](https://docs.litellm.ai/) |
+| **Day 57** | **MINI PROJECT** | LLM gateway with caching + routing |
+
+---
+
+## WEEK 9 — RAG & Vector Databases
+
+| Day | Topic | Resource |
+|---|---|---|
+| **Day 58** | RAG patterns 2027 | [Advanced RAG — LlamaIndex docs](https://docs.llamaindex.ai/en/stable/optimizing/production_rag/) + [Anthropic Contextual Retrieval](https://www.anthropic.com/news/contextual-retrieval) |
+| **Day 59** | Vector DB comparison | [Qdrant docs](https://qdrant.tech/documentation/) + [Weaviate docs](https://weaviate.io/developers/weaviate) + [pgvector](https://github.com/pgvector/pgvector) |
+| **Day 60** | Hybrid search | [Qdrant hybrid search](https://qdrant.tech/articles/hybrid-search/) |
+| **Day 61** | Re-rankers | [BGE rerankers](https://github.com/FlagOpen/FlagEmbedding) + [Cohere Rerank](https://docs.cohere.com/docs/rerank) |
+| **Day 62** | Chunking strategies | [Chunking — Greg Kamradt](https://www.youtube.com/watch?v=8OJC21T2SL4) + [Late Chunking paper](https://arxiv.org/abs/2409.04701) |
+| **Day 63** | GraphRAG | [Microsoft GraphRAG](https://github.com/microsoft/graphrag) + [Neo4j GenAI](https://neo4j.com/labs/genai-ecosystem/) |
+| **Day 64** | RAG evaluation | [Ragas docs](https://docs.ragas.io/) + [TruLens docs](https://www.trulens.org/) |
+| **Day 65** | **MINI PROJECT** | Production RAG with eval CI |
+
+**Highly Recommended Free Course:**
+- ⭐ **DataTalks.Club LLM Zoomcamp:** https://github.com/DataTalksClub/llm-zoomcamp
+
+---
+
+## WEEK 10 — Agent Systems & AgentOps
+
+| Day | Topic | Resource |
+|---|---|---|
+| **Day 66** | Agent architectures | [Anthropic: Building Effective Agents](https://www.anthropic.com/research/building-effective-agents) + [Building Effective Agents with LangGraph](https://www.youtube.com/watch?v=aHCDrAbH_go) |
+| **Day 67** | LangGraph | [LangGraph docs](https://langchain-ai.github.io/langgraph/) + [LangGraph YouTube playlist](https://www.youtube.com/playlist?list=PLfaIDFEXuae16n2TWUkKq5PgJ0w6Pkwtg) |
+| **Day 68** | CrewAI / AutoGen | [CrewAI docs](https://docs.crewai.com/) + [AutoGen docs](https://microsoft.github.io/autogen/) |
+| **Day 69** | Tool calling + guardrails | [Guardrails AI docs](https://www.guardrailsai.com/docs) + [NeMo Guardrails](https://github.com/NVIDIA/NeMo-Guardrails) |
+| **Day 70** | Agent memory | [Mem0 docs](https://docs.mem0.ai/) + [Zep docs](https://help.getzep.com/) |
+| **Day 71** | Agent observability | [LangFuse docs](https://langfuse.com/docs) + [Arize Phoenix](https://docs.arize.com/phoenix) |
+| **Day 72** | Sandboxing | [E2B docs](https://e2b.dev/docs) |
+| **Day 73** | **MINI PROJECT** | Multi-agent production system |
+
+---
+
+## WEEK 11 — Fine-Tuning & Model Customization
+
+| Day | Topic | Resource |
+|---|---|---|
+| **Day 74** | RAG vs Fine-tune decision | [HF Fine-tuning guide](https://huggingface.co/docs/transformers/training) |
+| **Day 75** | LoRA / QLoRA | [PEFT docs](https://huggingface.co/docs/peft/) + [QLoRA paper](https://arxiv.org/abs/2305.14314) |
+| **Day 76** | Unsloth | [Unsloth GitHub](https://github.com/unslothai/unsloth) + [Unsloth Colab notebooks](https://github.com/unslothai/unsloth#-finetune-for-free) |
+| **Day 77** | Axolotl | [Axolotl docs](https://github.com/OpenAccess-AI-Collective/axolotl) |
+| **Day 78** | DPO/ORPO/KTO with TRL | [TRL docs](https://huggingface.co/docs/trl/) |
+| **Day 79** | Synthetic data | [Distilabel docs](https://distilabel.argilla.io/) |
+| **Day 80** | Model merging | [mergekit GitHub](https://github.com/arcee-ai/mergekit) |
+| **Day 81** | **MINI PROJECT** | Custom domain LLM |
+
+**Premium-worth course:** [Hamel Husain — Mastering LLMs](https://maven.com/parlance-labs/fine-tuning) (free recordings: https://parlance-labs.com/education/)
+
+---
+
+## WEEK 12 — Experiment Tracking, Registries & Feature Stores
+
+| Day | Topic | Resource |
+|---|---|---|
+| **Day 82** | MLflow 3.x | [MLflow docs](https://mlflow.org/docs/latest/index.html) + [MLflow Full Course — freeCodeCamp](https://www.youtube.com/watch?v=tVskbekONlw) |
+| **Day 83** | W&B | [W&B docs](https://docs.wandb.ai/) + [W&B courses (free)](https://www.wandb.courses/) |
+| **Day 84** | DVC + LakeFS | [DVC docs](https://dvc.org/doc) + [LakeFS docs](https://docs.lakefs.io/) |
+| **Day 85** | Feast | [Feast docs](https://docs.feast.dev/) |
+| **Day 86** | Tecton concepts | [Tecton blog](https://www.tecton.ai/blog/) |
+| **Day 87** | Model registry patterns | [MLflow Model Registry docs](https://mlflow.org/docs/latest/model-registry.html) |
+| **Day 88** | **MINI PROJECT** | Full reproducibility stack |
+
+---
+
+## WEEK 13 — Data & Streaming for AI
+
+| Day | Topic | Resource |
+|---|---|---|
+| **Day 89** | Iceberg/Delta | [Apache Iceberg docs](https://iceberg.apache.org/docs/latest/) + [PyIceberg](https://py.iceberg.apache.org/) |
+| **Day 90** | Kafka / Redpanda | [Confluent free Kafka course](https://developer.confluent.io/courses/) + [Redpanda docs](https://docs.redpanda.com/) |
+| **Day 91** | Flink | [Flink docs](https://nightlies.apache.org/flink/flink-docs-stable/) + [Flink YouTube](https://www.youtube.com/@FlinkForward) |
+| **Day 92** | dbt | [dbt Learn (free)](https://courses.getdbt.com/) |
+| **Day 93** | Data quality | [Great Expectations docs](https://docs.greatexpectations.io/) + [Soda docs](https://docs.soda.io/) |
+| **Day 94** | Debezium CDC | [Debezium docs](https://debezium.io/documentation/) |
+| **Day 95** | **MINI PROJECT** | Real-time feature pipeline |
+
+⭐ **Free Course:** [DataTalks.Club Data Engineering Zoomcamp](https://github.com/DataTalksClub/data-engineering-zoomcamp)
+
+---
+
+# PHASE 4: PRODUCTION EXCELLENCE (Weeks 14–18)
+
+## WEEK 14 — CI/CD for AI Systems
+
+| Day | Topic | Resource |
+|---|---|---|
+| **Day 96** | GitHub Actions advanced | [GitHub Actions docs](https://docs.github.com/en/actions) + [GitHub Actions — TechWorld with Nana](https://www.youtube.com/watch?v=R8_veQiYBjI) |
+| **Day 97** | CML | [CML docs](https://cml.dev/) |
+| **Day 98** | Model testing | [Deepchecks docs](https://docs.deepchecks.com/) + [Giskard docs](https://docs.giskard.ai/) |
+| **Day 99** | LLM CI testing | [Promptfoo docs](https://www.promptfoo.dev/docs/intro/) + [DeepEval docs](https://docs.confident-ai.com/) |
+| **Day 100** | Canary + Argo Rollouts | [Argo Rollouts docs](https://argoproj.github.io/argo-rollouts/) |
+| **Day 101** | Feature flags | [Flagsmith docs](https://docs.flagsmith.com/) + [OpenFeature](https://openfeature.dev/) |
+| **Day 102** | **MINI PROJECT** | Zero-downtime LLM deployment |
+
+---
+
+## WEEK 15 — Observability for AI Systems
+
+| Day | Topic | Resource |
+|---|---|---|
+| **Day 103** | OpenTelemetry for Python | [OpenTelemetry Python docs](https://opentelemetry.io/docs/languages/python/) + [OpenLLMetry](https://github.com/traceloop/openllmetry) |
+| **Day 104** | Grafana LGTM | [Grafana docs](https://grafana.com/docs/) + [Loki](https://grafana.com/docs/loki/latest/) + [Tempo](https://grafana.com/docs/tempo/latest/) |
+| **Day 105** | LLM observability | [LangFuse](https://langfuse.com/docs) + [Helicone](https://docs.helicone.ai/) + [Phoenix](https://docs.arize.com/phoenix) |
+| **Day 106** | Drift detection | [Evidently docs](https://docs.evidentlyai.com/) + [NannyML docs](https://nannyml.readthedocs.io/) |
+| **Day 107** | Hallucination monitoring | [Patronus AI](https://www.patronus.ai/) + [Galileo](https://www.rungalileo.io/) |
+| **Day 108** | Runbooks | [Google SRE Book (free)](https://sre.google/books/) |
+| **Day 109** | **MINI PROJECT** | Full observability stack |
+
+---
+
+## WEEK 16 — Security, Compliance & Responsible AI
+
+| Day | Topic | Resource |
+|---|---|---|
+| **Day 110** | EU AI Act + ISO 42001 | [EU AI Act explainer](https://artificialintelligenceact.eu/) + [ISO 42001 overview](https://www.iso.org/standard/81230.html) |
+| **Day 111** | NIST AI RMF | [NIST AI RMF](https://www.nist.gov/itl/ai-risk-management-framework) + [Model Card Toolkit](https://github.com/tensorflow/model-card-toolkit) |
+| **Day 112** | OWASP LLM Top 10 | [OWASP LLM Top 10](https://genai.owasp.org/llm-top-10/) + [Garak GitHub](https://github.com/leondz/garak) + [PyRIT](https://github.com/Azure/PyRIT) |
+| **Day 113** | Prompt injection defenses | [Rebuff](https://github.com/protectai/rebuff) + [Lakera Guard](https://www.lakera.ai/) |
+| **Day 114** | PII redaction | [Microsoft Presidio docs](https://microsoft.github.io/presidio/) |
+| **Day 115** | Secrets management | [HashiCorp Vault docs](https://developer.hashicorp.com/vault/docs) + [SOPS](https://github.com/getsops/sops) |
+| **Day 116** | Supply chain (SLSA) | [SLSA framework](https://slsa.dev/) + [in-toto](https://in-toto.io/) |
+| **Day 117** | **MINI PROJECT** | Compliance-ready LLM app |
+
+---
+
+## WEEK 17 — Edge AI & On-Device Inference
+
+| Day | Topic | Resource |
+|---|---|---|
+| **Day 118** | Edge AI landscape | [Edge AI Foundation](https://www.edgeaifoundation.org/) |
+| **Day 119** | ONNX Runtime | [ONNX Runtime docs](https://onnxruntime.ai/docs/) + [Optimum-ONNX](https://huggingface.co/docs/optimum/onnxruntime/overview) |
+| **Day 120** | WebGPU + Transformers.js | [Transformers.js docs](https://huggingface.co/docs/transformers.js) |
+| **Day 121** | MLC-LLM | [MLC-LLM docs](https://llm.mlc.ai/docs/) |
+| **Day 122** | Jetson / Coral | [NVIDIA Jetson docs](https://developer.nvidia.com/embedded/jetson-developer-kits) + [Google Coral](https://coral.ai/docs/) |
+| **Day 123** | Federated learning | [Flower docs](https://flower.ai/docs/) |
+| **Day 124** | **MINI PROJECT** | Browser RAG with WebGPU |
+
+---
+
+## WEEK 18 — Cost Engineering & FinOps for AI
+
+| Day | Topic | Resource |
+|---|---|---|
+| **Day 125** | LLM cost math | [Artificial Analysis (model price comparison)](https://artificialanalysis.ai/) |
+| **Day 126** | Semantic caching | [GPTCache GitHub](https://github.com/zilliztech/GPTCache) |
+| **Day 127** | Prompt compression | [LLMLingua GitHub](https://github.com/microsoft/LLMLingua) |
+| **Day 128** | Model routing | [RouteLLM GitHub](https://github.com/lm-sys/RouteLLM) + [Martian](https://withmartian.com/) |
+| **Day 129** | Karpenter spot GPUs | [Karpenter docs](https://karpenter.sh/) |
+| **Day 130** | OpenCost | [OpenCost docs](https://www.opencost.io/docs/) + [Kubecost](https://docs.kubecost.com/) |
+| **Day 131** | **MINI PROJECT** | LLM gateway with 5–10× cost reduction |
+
+---
+
+# PHASE 5: PORTFOLIO, SPECIALIZATION & LAUNCH (Weeks 19–24)
+
+## WEEKS 19–20 — Capstone Project
+
+**Reference Implementations:**
+- [Made With ML — Goku Mohandas](https://madewithml.com/) (free, comprehensive)
+- [Full Stack Deep Learning](https://fullstackdeeplearning.com/) (free)
+- [GenAI Agents — NirDiamant](https://github.com/NirDiamant/GenAI_Agents)
+- [RAG Techniques — NirDiamant](https://github.com/NirDiamant/RAG_Techniques)
+
+**Capstone Architecture Tools:**
+- [Excalidraw (diagrams)](https://excalidraw.com/)
+- [draw.io](https://app.diagrams.net/)
+- [Eraser.io (AI-assisted diagrams)](https://www.eraser.io/)
+
+**Datasets:**
+- [Hugging Face Datasets](https://huggingface.co/datasets)
+- [Kaggle Datasets](https://www.kaggle.com/datasets)
+- [Google Dataset Search](https://datasetsearch.research.google.com/)
+
+---
+
+## WEEK 21 — Certifications
+
+| Cert | Link |
+|---|---|
+| **CKAD** | https://www.cncf.io/training/certification/ckad/ |
+| **CKA** | https://www.cncf.io/training/certification/cka/ |
+| **AWS ML Engineer Associate** | https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/ |
+| **GCP Pro ML Engineer** | https://cloud.google.com/learn/certification/machine-learning-engineer |
+| **HashiCorp Terraform Associate** | https://www.hashicorp.com/certification/terraform-associate |
+| **NVIDIA Generative AI LLMs** | https://www.nvidia.com/en-us/learn/certification/generative-ai-llm-associate/ |
+| **Databricks ML Professional** | https://www.databricks.com/learn/certification/machine-learning-professional |
+
+**Free Courses to Complete:**
+- ⭐ [MLOps Zoomcamp](https://github.com/DataTalksClub/mlops-zoomcamp)
+- ⭐ [LLM Zoomcamp](https://github.com/DataTalksClub/llm-zoomcamp)
+- ⭐ [AI Dev Tools Zoomcamp](https://github.com/DataTalksClub/ai-dev-tools-zoomcamp)
+- [DeepLearning.AI Short Courses (free)](https://www.deeplearning.ai/short-courses/)
+- [Hugging Face Courses](https://huggingface.co/learn)
+- [Google Cloud Skills Boost](https://www.cloudskillsboost.google/)
+
+---
+
+## WEEK 22 — Open Source & Personal Brand
+
+**OSS Projects to Contribute To:**
+- [vLLM](https://github.com/vllm-project/vllm)
+- [LangChain](https://github.com/langchain-ai/langchain)
+- [LlamaIndex](https://github.com/run-llama/llama_index)
+- [MLflow](https://github.com/mlflow/mlflow)
+- [Kubeflow](https://github.com/kubeflow/kubeflow)
+- [Dagster](https://github.com/dagster-io/dagster)
+- [Feast](https://github.com/feast-dev/feast)
+- [BentoML](https://github.com/bentoml/BentoML)
+- [Evidently](https://github.com/evidentlyai/evidently)
+
+**Personal Brand Resources:**
+- [Astro (static site)](https://astro.build/)
+- [Next.js](https://nextjs.org/)
+- [Hashnode (blogging)](https://hashnode.com/)
+- [Dev.to](https://dev.to/)
+- [Medium](https://medium.com/)
+- [Swyx — Learn in Public essay](https://www.swyx.io/learn-in-public)
+
+**Newsletters (Subscribe All):**
+- [Latent Space](https://www.latent.space/)
+- [Interconnects — Nathan Lambert](https://www.interconnects.ai/)
+- [The Sequence](https://thesequence.substack.com/)
+- [Chip Huyen's Blog](https://huyenchip.com/blog/)
+- [Eugene Yan's Blog](https://eugeneyan.com/)
+- [Hamel Husain's Blog](https://hamel.dev/)
+- [Simon Willison's Blog](https://simonwillison.net/)
+- [Lilian Weng's Blog](https://lilianweng.github.io/)
+
+**Communities:**
+- [MLOps Community Slack](https://mlops.community/)
+- [LangChain Discord](https://discord.gg/langchain)
+- [Hugging Face Discord](https://discord.gg/hugging-face)
+- [r/LocalLLaMA](https://reddit.com/r/LocalLLaMA)
+- [r/MachineLearning](https://reddit.com/r/MachineLearning)
+- [r/mlops](https://reddit.com/r/mlops)
+
+---
+
+## WEEK 23 — System Design & Interview Mastery
+
+| Resource | Link |
+|---|---|
+| Chip Huyen — ML Interviews Book (free) | https://huyenchip.com/ml-interviews-book/ |
+| ML System Design — Chip Huyen | https://www.youtube.com/watch?v=UxKv7VYVzfE |
+| Hello Interview (ML SD) | https://www.hellointerview.com/ |
+| ByteByteGo (system design YouTube) | https://www.youtube.com/@ByteByteGo |
+| Educative Grokking ML SD | https://www.educative.io/courses/machine-learning-system-design |
+| Mock interviews — Pramp | https://www.pramp.com/ |
+| Mock interviews — interviewing.io | https://interviewing.io/ |
+| NeetCode (LeetCode prep) | https://neetcode.io/ |
+| Levels.fyi (salary research) | https://www.levels.fyi/ |
+| Repvue (company reviews) | https://www.repvue.com/ |
+
+**Books:**
+- *Designing Machine Learning Systems* — Chip Huyen: https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/
+- *AI Engineering* — Chip Huyen (2024): https://www.oreilly.com/library/view/ai-engineering/9781098166298/
+- *Designing Data-Intensive Applications* — Martin Kleppmann: https://dataintensive.net/
+- *Building LLMs for Production* — Bouchard & Peters: https://www.amazon.com/Building-LLMs-Production-Reliability-Fine-Tuning/dp/B0D4FFPFW8
+- *Hands-On Large Language Models* — Alammar & Grootendorst: https://www.oreilly.com/library/view/hands-on-large-language/9781098150952/
+
+---
+
+## WEEK 24 — Job Hunt Execution
+
+| Resource | Link |
+|---|---|
+| LinkedIn Jobs | https://www.linkedin.com/jobs/ |
+| Wellfound (AngelList) | https://wellfound.com/ |
+| Y Combinator Work at a Startup | https://www.workatastartup.com/ |
+| Otta | https://otta.com/ |
+| Hacker News Who's Hiring | https://news.ycombinator.com/jobs |
+| Instahyre (India) | https://www.instahyre.com/ |
+| Cutshort (India) | https://cutshort.io/ |
+| MLOps Community Job Board | https://mlops.community/jobs/ |
+| AI/ML Jobs (curated) | https://aijobs.net/ |
+
+---
+
+## 🎓 KEY YOUTUBE CHANNELS TO SUBSCRIBE
+
+| Channel | Link |
+|---|---|
+| TechWorld with Nana | https://www.youtube.com/@TechWorldwithNana |
+| freeCodeCamp | https://www.youtube.com/@freecodecamp |
+| MLOps Community | https://www.youtube.com/@MLOpsCommunity |
+| Krish Naik | https://www.youtube.com/@krishnaik06 |
+| LangChain | https://www.youtube.com/@LangChain |
+| Hugging Face | https://www.youtube.com/@HuggingFace |
+| Weaviate | https://www.youtube.com/@Weaviate |
+| Pinecone | https://www.youtube.com/@pinecone-io |
+| Latent Space | https://www.youtube.com/@LatentSpacePod |
+| AI Engineer (conference) | https://www.youtube.com/@aiDotEngineer |
+| Yannic Kilcher (research) | https://www.youtube.com/@YannicKilcher |
+| Umar Jamil (paper deep-dives) | https://www.youtube.com/@umarjamilai |
+| ArjanCodes (Python) | https://www.youtube.com/@ArjanCodes |
+| ByteByteGo (system design) | https://www.youtube.com/@ByteByteGo |
+| StatQuest | https://www.youtube.com/@statquest |
+| 3Blue1Brown (math) | https://www.youtube.com/@3blue1brown |
+| Andrej Karpathy | https://www.youtube.com/@AndrejKarpathy |
+| Sam Witteveen (LangChain/agents) | https://www.youtube.com/@samwitteveenai |
+| 1littlecoder | https://www.youtube.com/@1littlecoder |
+
+---
+
+## ⭐ FREE STRUCTURED COURSES (Highly Recommended)
+
+| Course | Link |
+|---|---|
+| ⭐ MLOps Zoomcamp | https://github.com/DataTalksClub/mlops-zoomcamp |
+| ⭐ LLM Zoomcamp | https://github.com/DataTalksClub/llm-zoomcamp |
+| ML Zoomcamp | https://github.com/DataTalksClub/machine-learning-zoomcamp |
+| Data Engineering Zoomcamp | https://github.com/DataTalksClub/data-engineering-zoomcamp |
+| AI Dev Tools Zoomcamp | https://github.com/DataTalksClub/ai-dev-tools-zoomcamp |
+| Made With ML | https://madewithml.com/ |
+| Full Stack Deep Learning | https://fullstackdeeplearning.com/ |
+| Hugging Face Learn (all) | https://huggingface.co/learn |
+| DeepLearning.AI Short Courses | https://www.deeplearning.ai/short-courses/ |
+| fast.ai | https://www.fast.ai/ |
+| Karpathy — Neural Networks: Zero to Hero | https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ |
+| Karpathy — LLM Bootcamp lectures | https://karpathy.ai/zero-to-hero.html |
+| LLM Bootcamp 2023 (Full Stack DL) | https://fullstackdeeplearning.com/llm-bootcamp/ |
+
+---
+
+## 📊 DAILY TIME COMMITMENT
+
+- **Weekdays:** 2–3 hours
+- **Weekends:** 5–6 hours
+- **Total:** ~445 hours over 24 weeks
+- **Budget:** $300–$500 (offset by free cloud credits)
+
+---
+
+## 🎯 PORTFOLIO DELIVERABLES BY DAY 168
+
+1. **Capstone repo** with live demo + video walkthrough
+2. **10+ specialized GitHub repos** (one per major topic)
+3. **3 deep technical blog posts** on Medium/Hashnode/personal site
+4. **1 PyPI package** published
+5. **1 OSS PR merged** to major project
+6. **1 conference/meetup talk** recorded
+7. **Personal website** with case studies (Astro/Next.js)
+8. **2 industry certifications** (e.g., CKAD + AWS ML Engineer Associate)
+9. **20+ LinkedIn posts** demonstrating expertise
+10. **50+ MLOps/AI engineers** in network
+
+---
+
+## 🚀 EXPECTED OUTCOMES (2027–2030)
+
+| Role Tier | Probability | Comp Range |
+|---|---|---|
+| Junior MLOps Engineer | 99% | $90K–$130K |
+| **Mid-Senior MLOps / AI Platform Eng** | **85%** | **$150K–$220K** |
+| Senior MLOps / Staff | 50% | $220K–$300K+ |
+| Founding AI Engineer | 30% | Equity + $140K–$200K |
+| FAANG / Top AI Lab | 15–20% | $250K–$450K |
+
+---
+
+## 🎯 NORTH STAR PRINCIPLE
+
+> **"You're not learning to deploy models. You're learning to build the platforms that let teams ship AI safely, cheaply, and reliably at scale."**
+
+---
+
+*Last updated: For 2027–2030 industry trajectory*
+*Personalized for: Java Backend Engineer → Senior MLOps / AI Platform Engineer*
+*License: Free to share, adapt, and improve*
