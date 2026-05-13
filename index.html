@@ -1,0 +1,1114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MLOps Roadmap · Backend → AI Platform Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d0c;
+    --bg-elev: #141413;
+    --bg-card: #1a1a18;
+    --bg-deep: #08080a;
+    --ink: #f4f1e8;
+    --ink-dim: #a8a39a;
+    --ink-faint: #6b675f;
+    --line: #2a2826;
+    --line-bright: #3d3a35;
+    --accent: #f7d046;
+    --accent-dim: #8a7626;
+    --done: #6ba368;
+    --warn: #d97757;
+    --added: #c9a5e8;
+    --grid: rgba(255,255,255,0.02);
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'Inter Tight', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-weight: 400; -webkit-font-smoothing: antialiased; }
+  body {
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 32px 32px;
+    background-position: -1px -1px;
+    min-height: 100vh;
+  }
+  ::selection { background: var(--accent); color: var(--bg); }
+  a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--ink-faint); text-underline-offset: 3px; transition: text-decoration-color .15s; }
+  a:hover { text-decoration-color: var(--accent); }
+
+  /* ============= TOP BAR ============= */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(13,13,12,0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 32px;
+    display: flex; align-items: center; gap: 24px;
+  }
+  .brand { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; color: var(--ink-dim); text-transform: uppercase; }
+  .brand b { color: var(--accent); font-weight: 500; }
+  .live-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--done); margin-right: 6px; vertical-align: middle; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .topbar-stats { margin-left: auto; display: flex; gap: 28px; font-family: var(--mono); font-size: 11px; }
+  .topbar-stats span { color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.1em; }
+  .topbar-stats b { color: var(--ink); font-weight: 500; margin-left: 6px; }
+
+  /* ============= HERO ============= */
+  .hero { padding: 80px 32px 60px; max-width: 1280px; margin: 0 auto; position: relative; }
+  .hero-tag { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 24px; }
+  .hero-tag::before { content: '◆ '; }
+  .hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(48px, 8vw, 112px); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 24px; }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--ink-dim); max-width: 620px; line-height: 1.4; }
+  .hero-meta { margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .hero-meta > div { background: var(--bg); padding: 18px 22px; }
+  .hero-meta dt { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 6px; }
+  .hero-meta dd { font-family: var(--serif); font-size: 28px; color: var(--ink); }
+  .hero-meta dd small { font-family: var(--sans); font-size: 12px; color: var(--ink-dim); margin-left: 4px; }
+
+  /* ============= NAV ============= */
+  .nav {
+    position: sticky; top: 49px; z-index: 40;
+    background: rgba(13,13,12,0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    padding: 0 32px;
+    display: flex; gap: 0;
+    overflow-x: auto;
+  }
+  .nav button { background: none; border: none; color: var(--ink-dim); font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; padding: 16px 20px; cursor: pointer; border-bottom: 2px solid transparent; transition: all .15s; white-space: nowrap; }
+  .nav button:hover { color: var(--ink); }
+  .nav button.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ============= SECTIONS ============= */
+  .section { display: none; max-width: 1280px; margin: 0 auto; padding: 60px 32px 120px; }
+  .section.active { display: block; }
+  .section-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 48px; border-bottom: 1px solid var(--line); padding-bottom: 24px; }
+  .section-num { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.15em; }
+  .section-head h2 { font-family: var(--serif); font-weight: 400; font-size: 56px; letter-spacing: -0.01em; }
+  .section-head h2 em { font-style: italic; color: var(--accent); }
+  .section-lead { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--ink-dim); max-width: 720px; line-height: 1.5; margin-left: auto; }
+
+  /* ============= TODAY CARD ============= */
+  .today-card { background: var(--bg-elev); border: 1px solid var(--line-bright); padding: 32px; display: grid; grid-template-columns: 120px 1fr auto; gap: 32px; align-items: center; margin-bottom: 48px; position: relative; overflow: hidden; }
+  .today-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); }
+  .today-num { font-family: var(--serif); font-size: 80px; line-height: 1; color: var(--accent); }
+  .today-label { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
+  .today-topic { font-family: var(--serif); font-size: 32px; line-height: 1.2; }
+  .today-context { font-family: var(--mono); font-size: 11px; color: var(--ink-dim); margin-top: 8px; letter-spacing: 0.05em; }
+  .today-cta { display: flex; flex-direction: column; gap: 8px; }
+  .btn { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 20px; border: 1px solid var(--line-bright); background: transparent; color: var(--ink); cursor: pointer; transition: all .15s; }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+  .btn-primary:hover { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+
+  /* ============= STREAK / STATS ============= */
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-bottom: 48px; }
+  .stat { background: var(--bg-elev); padding: 24px 28px; }
+  .stat-label { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+  .stat-value { font-family: var(--serif); font-size: 48px; line-height: 1; }
+  .stat-value small { font-family: var(--sans); font-size: 14px; color: var(--ink-dim); }
+  .progress-track { height: 4px; background: var(--bg-deep); margin-top: 16px; position: relative; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--accent); transition: width .4s ease; }
+
+  /* ============= PHASE ============= */
+  .phase { border: 1px solid var(--line); margin-bottom: 16px; background: var(--bg-elev); }
+  .phase-head { padding: 22px 28px; display: grid; grid-template-columns: 60px 1fr auto auto; gap: 24px; align-items: center; cursor: pointer; transition: background .15s; }
+  .phase-head:hover { background: var(--bg-card); }
+  .phase-id { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.1em; }
+  .phase-title { font-family: var(--serif); font-size: 28px; }
+  .phase-title em { font-style: italic; color: var(--ink-dim); font-size: 18px; }
+  .phase-progress { font-family: var(--mono); font-size: 12px; color: var(--ink-dim); }
+  .phase-toggle { width: 32px; height: 32px; border: 1px solid var(--line-bright); display: flex; align-items: center; justify-content: center; font-family: var(--mono); transition: all .15s; }
+  .phase.open .phase-toggle { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+  .phase-body { display: none; border-top: 1px solid var(--line); padding: 32px; }
+  .phase.open .phase-body { display: block; }
+
+  /* ============= WEEK ============= */
+  .week { margin-bottom: 32px; }
+  .week:last-child { margin-bottom: 0; }
+  .week-head { display: flex; align-items: baseline; gap: 16px; padding-bottom: 12px; border-bottom: 1px dashed var(--line); margin-bottom: 16px; }
+  .week-num { font-family: var(--mono); font-size: 10px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; }
+  .week-title { font-family: var(--serif); font-size: 22px; font-style: italic; color: var(--ink); }
+  .week-added { font-family: var(--mono); font-size: 9px; padding: 3px 8px; background: rgba(201,165,232,0.1); color: var(--added); letter-spacing: 0.1em; text-transform: uppercase; margin-left: auto; }
+
+  /* ============= DAY ============= */
+  .day { display: grid; grid-template-columns: 32px 60px 1fr auto; gap: 16px; padding: 14px 12px; border-bottom: 1px solid transparent; transition: all .15s; align-items: start; }
+  .day:hover { background: var(--bg-card); border-bottom-color: var(--line); }
+  .day.done { opacity: 0.4; }
+  .day.done .day-topic { text-decoration: line-through; }
+  .day-check { width: 18px; height: 18px; border: 1.5px solid var(--ink-faint); cursor: pointer; transition: all .15s; margin-top: 2px; display: flex; align-items: center; justify-content: center; background: transparent; }
+  .day-check:hover { border-color: var(--accent); }
+  .day-check.checked { background: var(--accent); border-color: var(--accent); }
+  .day-check.checked::after { content: '✓'; color: var(--bg); font-size: 12px; font-weight: 700; }
+  .day-num { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.05em; padding-top: 4px; }
+  .day-main { min-width: 0; }
+  .day-topic { font-size: 15px; line-height: 1.4; }
+  .day-topic .added-tag { font-family: var(--mono); font-size: 9px; padding: 2px 6px; background: rgba(201,165,232,0.15); color: var(--added); letter-spacing: 0.08em; text-transform: uppercase; margin-left: 8px; vertical-align: 1px; }
+  .day-resource { font-family: var(--mono); font-size: 12px; color: var(--ink-dim); margin-top: 4px; line-height: 1.5; }
+  .day-resource a { color: var(--ink-dim); }
+  .day-log-btn { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; background: transparent; border: 1px solid var(--line); padding: 4px 10px; cursor: pointer; transition: all .15s; white-space: nowrap; margin-top: 2px; }
+  .day-log-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .day-log-btn.has-log { border-color: var(--done); color: var(--done); }
+
+  /* ============= LOG EDITOR ============= */
+  .day-editor { grid-column: 1 / -1; margin-top: 12px; padding: 20px; background: var(--bg-deep); border: 1px solid var(--line); display: none; }
+  .day.editing .day-editor { display: block; }
+  .editor-row { margin-bottom: 14px; }
+  .editor-row:last-child { margin-bottom: 0; }
+  .editor-label { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 6px; display: block; }
+  .editor-input, .editor-textarea { width: 100%; background: var(--bg); border: 1px solid var(--line); color: var(--ink); padding: 10px 12px; font-family: var(--mono); font-size: 12px; resize: vertical; }
+  .editor-input:focus, .editor-textarea:focus { outline: none; border-color: var(--accent); }
+  .editor-textarea { min-height: 80px; line-height: 1.6; }
+  .editor-actions { display: flex; gap: 8px; margin-top: 8px; }
+
+  /* ============= LOG VIEW ============= */
+  .log-empty { text-align: center; padding: 80px 32px; font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--ink-faint); }
+  .log-entry { border: 1px solid var(--line); padding: 24px 28px; margin-bottom: 12px; background: var(--bg-elev); transition: border-color .15s; }
+  .log-entry:hover { border-color: var(--line-bright); }
+  .log-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+  .log-day-tag { font-family: var(--mono); font-size: 10px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; }
+  .log-date { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); }
+  .log-topic { font-family: var(--serif); font-size: 24px; margin-bottom: 12px; line-height: 1.3; }
+  .log-notes { font-size: 14px; line-height: 1.7; color: var(--ink-dim); white-space: pre-wrap; padding: 16px 0; border-top: 1px dashed var(--line); }
+  .log-url { font-family: var(--mono); font-size: 12px; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--line); }
+  .log-url::before { content: '→ '; color: var(--accent); }
+
+  /* ============= GAPS SECTION ============= */
+  .gap-card { border: 1px solid var(--line); padding: 32px; margin-bottom: 16px; background: var(--bg-elev); display: grid; grid-template-columns: 80px 1fr; gap: 32px; }
+  .gap-card-tag { font-family: var(--mono); font-size: 10px; color: var(--added); letter-spacing: 0.15em; text-transform: uppercase; writing-mode: vertical-rl; transform: rotate(180deg); align-self: start; padding-top: 4px; }
+  .gap-card h3 { font-family: var(--serif); font-size: 28px; margin-bottom: 8px; }
+  .gap-card p { color: var(--ink-dim); line-height: 1.7; max-width: 720px; }
+  .gap-card ul { margin-top: 16px; list-style: none; }
+  .gap-card li { padding: 8px 0; font-family: var(--mono); font-size: 12px; color: var(--ink-dim); border-bottom: 1px dashed var(--line); }
+  .gap-card li:last-child { border-bottom: none; }
+  .gap-card li::before { content: '◇ '; color: var(--added); }
+
+  /* ============= IO ============= */
+  .io-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .io-card { border: 1px solid var(--line); background: var(--bg-elev); padding: 28px; }
+  .io-card h3 { font-family: var(--serif); font-size: 22px; margin-bottom: 12px; }
+  .io-card p { font-size: 14px; color: var(--ink-dim); line-height: 1.6; margin-bottom: 16px; }
+  .io-textarea { width: 100%; min-height: 200px; background: var(--bg); border: 1px solid var(--line); color: var(--ink); padding: 14px; font-family: var(--mono); font-size: 11px; line-height: 1.6; resize: vertical; }
+  .io-textarea:focus { outline: none; border-color: var(--accent); }
+
+  /* ============= UTILITIES ============= */
+  .controls { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+  .toast { position: fixed; bottom: 32px; right: 32px; background: var(--accent); color: var(--bg); padding: 14px 24px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; z-index: 100; opacity: 0; transform: translateY(20px); transition: all .25s; pointer-events: none; }
+  .toast.show { opacity: 1; transform: translateY(0); }
+
+  /* ============= QUOTE ============= */
+  .quote { padding: 80px 32px; max-width: 1280px; margin: 0 auto; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .quote blockquote { font-family: var(--serif); font-style: italic; font-size: clamp(28px, 4vw, 48px); line-height: 1.3; max-width: 900px; }
+  .quote cite { display: block; font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 24px; font-style: normal; }
+
+  /* ============= FOOTER ============= */
+  footer { padding: 60px 32px; max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: 0.15em; text-transform: uppercase; }
+
+  /* ============= RESPONSIVE ============= */
+  @media (max-width: 720px) {
+    .topbar { padding: 12px 16px; }
+    .topbar-stats { gap: 14px; font-size: 10px; }
+    .hero { padding: 48px 16px 32px; }
+    .section { padding: 32px 16px 80px; }
+    .nav { padding: 0 16px; }
+    .today-card { grid-template-columns: 1fr; gap: 16px; padding: 24px; }
+    .today-num { font-size: 56px; }
+    .today-topic { font-size: 22px; }
+    .phase-head { grid-template-columns: 1fr auto; gap: 12px; padding: 16px 20px; }
+    .phase-id, .phase-progress { grid-column: 1; }
+    .phase-body { padding: 20px; }
+    .day { grid-template-columns: 24px 40px 1fr; padding: 12px 4px; gap: 8px; }
+    .day-log-btn { grid-column: 1 / -1; justify-self: start; margin-top: 4px; }
+    .gap-card { grid-template-columns: 1fr; gap: 16px; padding: 20px; }
+    .gap-card-tag { writing-mode: horizontal-tb; transform: none; }
+    .io-grid { grid-template-columns: 1fr; }
+    .section-head { flex-wrap: wrap; }
+    .section-head h2 { font-size: 36px; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand"><span class="live-dot"></span><b>MLOPS/</b>ROADMAP · v2.0</div>
+  <div class="topbar-stats">
+    <span>Progress<b id="tb-pct">0%</b></span>
+    <span>Done<b id="tb-done">0</b></span>
+    <span>Streak<b id="tb-streak">0</b></span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-tag">Compiled Report · 2027–2030 Trajectory</div>
+  <h1>From <em>Java backend</em><br/>to AI <em>platform engineer</em>.</h1>
+  <p class="hero-sub">A 210-day intensive program. Curated resources, daily check-ins, work log. The original 168-day plan, plus eight added blocks where it was thin.</p>
+  <dl class="hero-meta">
+    <div><dt>Target role</dt><dd>Senior MLOps</dd></div>
+    <div><dt>Comp band</dt><dd>$150–280K</dd></div>
+    <div><dt>Total days</dt><dd>210<small>(168 + 42 added)</small></dd></div>
+    <div><dt>Daily commit</dt><dd>2–3h<small>weekdays</small></dd></div>
+  </dl>
+</div>
+
+<div class="nav">
+  <button class="nav-btn active" data-section="dashboard">◆ Dashboard</button>
+  <button class="nav-btn" data-section="roadmap">▤ Roadmap</button>
+  <button class="nav-btn" data-section="additions">+ What I added</button>
+  <button class="nav-btn" data-section="log">≡ Work log</button>
+  <button class="nav-btn" data-section="data">↗ Data</button>
+</div>
+
+<!-- ============= DASHBOARD ============= -->
+<section class="section active" id="section-dashboard">
+  <div class="section-head">
+    <span class="section-num">§ 01</span>
+    <h2>Today, <em>at a glance</em>.</h2>
+  </div>
+  <div id="today-mount"></div>
+  <div class="stat-grid" id="stats-mount"></div>
+  <div class="quote" style="border:none; padding: 40px 0;">
+    <blockquote>"You're not learning to deploy models. You're learning to build the <em>platforms</em> that let teams ship AI safely, cheaply, and reliably at scale."</blockquote>
+    <cite>— North star principle</cite>
+  </div>
+</section>
+
+<!-- ============= ROADMAP ============= -->
+<section class="section" id="section-roadmap">
+  <div class="section-head">
+    <span class="section-num">§ 02</span>
+    <h2>The <em>roadmap</em>.</h2>
+    <p class="section-lead">Six phases. Click any to expand. Check off as you go. The "log" button on each day captures your notes and the GitHub URL of what you built.</p>
+  </div>
+  <div class="controls">
+    <button class="btn" onclick="expandAll()">Expand all</button>
+    <button class="btn" onclick="collapseAll()">Collapse all</button>
+    <button class="btn" onclick="jumpToNext()">Jump to next undone</button>
+  </div>
+  <div id="phase-jump-nav" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-bottom: 32px;"></div>
+  <div id="phases-mount"></div>
+</section>
+
+<!-- ============= ADDITIONS ============= -->
+<section class="section" id="section-additions">
+  <div class="section-head">
+    <span class="section-num">§ 03</span>
+    <h2>What I <em>added</em>.</h2>
+    <p class="section-lead">Eight blocks the original missed. Without these, a backend engineer reaches the end of the program with sharp tooling knowledge but soft fundamentals — and several gaps that hurt real-world readiness.</p>
+  </div>
+  <div id="gaps-mount"></div>
+</section>
+
+<!-- ============= LOG ============= -->
+<section class="section" id="section-log">
+  <div class="section-head">
+    <span class="section-num">§ 04</span>
+    <h2>Work <em>log</em>.</h2>
+    <p class="section-lead">Everything you've shipped, in reverse chronological order. This is your evidence trail — for interviews, for retrospectives, for momentum.</p>
+  </div>
+  <div id="log-mount"></div>
+</section>
+
+<!-- ============= DATA ============= -->
+<section class="section" id="section-data">
+  <div class="section-head">
+    <span class="section-num">§ 05</span>
+    <h2>Backup &amp; <em>restore</em>.</h2>
+    <p class="section-lead">Everything is stored in your browser's localStorage. Export this regularly. Paste into the import box to restore on a new device.</p>
+  </div>
+  <div class="io-grid">
+    <div class="io-card">
+      <h3>Export</h3>
+      <p>Copy this JSON and save it somewhere safe — a private gist, a Notion page, or a file in your dotfiles repo.</p>
+      <textarea class="io-textarea" id="export-area" readonly></textarea>
+      <div style="margin-top: 12px; display: flex; gap: 8px;">
+        <button class="btn btn-primary" onclick="copyExport()">Copy to clipboard</button>
+        <button class="btn" onclick="downloadExport()">Download JSON</button>
+      </div>
+    </div>
+    <div class="io-card">
+      <h3>Import</h3>
+      <p>Paste exported JSON here and click restore. This overwrites your current progress, so back up first if needed.</p>
+      <textarea class="io-textarea" id="import-area" placeholder='{"completed": {...}, "logs": {...}}'></textarea>
+      <div style="margin-top: 12px; display: flex; gap: 8px;">
+        <button class="btn btn-primary" onclick="importData()">Restore</button>
+        <button class="btn" onclick="resetData()" style="border-color: var(--warn); color: var(--warn);">Reset everything</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="quote">
+  <blockquote>"The best engineers I know aren't the ones who memorized the most tools. They're the ones who built a system, watched it break in production, and learned what mattered."</blockquote>
+  <cite>— A reminder</cite>
+</div>
+
+<footer>
+  <div>MLOps roadmap tracker · single-file · localStorage</div>
+  <div id="footer-ts"></div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+//  DATA
+// ============================================================
+const DATA = {
+  gaps: [
+    { tag: 'Phase 0', title: 'Math & ML foundations', why: 'The original drops a backend engineer into PyTorch in Week 2. Without basic linear algebra, gradients, and classical ML evaluation intuition, that week is mostly cargo-cult copying.', items: ['Linear algebra & calculus intuition (3Blue1Brown)', 'Probability, hypothesis testing, confidence intervals', 'Bias-variance, regularization, overfitting', 'Precision/recall/ROC/F1 from first principles', 'Karpathy NN: Zero to Hero — micrograd → makemore → GPT', 'Attention mechanism deep dive (Illustrated Transformer)', 'Build & evaluate logistic regression from scratch'] },
+    { tag: 'Week 4.5', title: 'Service mesh & multi-tenancy', why: 'Senior MLOps roles routinely involve isolating tenants on shared K8s clusters. The original covers K8s well but skips mTLS, Istio/Linkerd, and namespace isolation patterns.', items: ['Istio vs Linkerd: when to pick which', 'mTLS for service-to-service auth', 'Multi-tenant namespace patterns for ML platforms', 'Deploy two isolated ML namespaces with mTLS'] },
+    { tag: 'Week 8.5', title: 'Classical model serving', why: 'Not every production model is an LLM. Triton, BentoML, KServe, and TorchServe are the workhorses for tabular and CV models. The original mentions BentoML only as an OSS target.', items: ['Triton Inference Server', 'TorchServe & TensorFlow Serving', 'BentoML for unified packaging', 'KServe / Seldon Core on Kubernetes', 'Serve XGBoost + DistilBERT via BentoML + KServe'] },
+    { tag: 'Week 11.5', title: 'Distributed training', why: 'Senior/Staff comp tiers assume you can debug a multi-node training job. FSDP, DeepSpeed/ZeRO, and Megatron are table stakes — completely absent from the original.', items: ['Data parallel vs model parallel concepts', 'PyTorch FSDP', 'DeepSpeed & ZeRO stages 1/2/3', 'Megatron-LM tensor & pipeline parallelism', 'Multi-node training on K8s (Kubeflow Training Operator)', 'Checkpointing & spot-instance resumption', 'Fine-tune 7B model with FSDP on 2 GPUs'] },
+    { tag: 'Week 13.5', title: 'Online stores & DB internals', why: 'The original treats data engineering as one survey week. Real feature serving needs OLAP-vs-OLTP intuition and low-latency online stores (Redis, ScyllaDB, DynamoDB).', items: ['OLAP vs OLTP for feature serving (DDIA ch.3)', 'Redis & DynamoDB as low-latency online stores', 'ScyllaDB for high-throughput', 'Read replicas & connection pooling at scale', 'Build an online feature store with Redis + Feast'] },
+    { tag: 'Week 14.5', title: 'A/B testing & experimentation', why: 'Shipping models without measuring online lift is theater. GrowthBook/Eppo/Statsig and offline-vs-online metric correlation are how senior MLOps engineers earn their seat at the product table.', items: ['A/B test design: power, MDE, sample size', 'GrowthBook / Eppo / Statsig comparison', 'Offline vs online metric correlation', 'Multi-armed bandits for model selection', 'A/B test two model versions with GrowthBook'] },
+    { tag: 'Week 18.5', title: 'Training FinOps & soft skills', why: 'Inference FinOps is covered. Training cost — GPU-hour math, spot/preemptible strategies, checkpoint resumption economics — is not. Plus the soft skills that separate Senior from Staff.', items: ['GPU-hour math for training cost modeling', 'Spot/preemptible training strategies', 'Stakeholder management with DS & PM', 'Writing design docs & RFCs', 'On-call & incident response for ML systems'] }
+  ],
+  phases: [
+    { id: 'p0', title: 'Phase 0', subtitle: 'ML & math foundations (added)', weeks: [
+      { num: 'Week A', title: 'Math & statistics for ML', added: true, days: [
+        { n: 'A1', t: 'Linear algebra intuition', r: '<a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" target="_blank">3Blue1Brown — Essence of Linear Algebra</a>' },
+        { n: 'A2', t: 'Calculus & gradients', r: '<a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr" target="_blank">3Blue1Brown — Essence of Calculus</a>' },
+        { n: 'A3', t: 'Probability fundamentals', r: '<a href="https://www.youtube.com/@statquest" target="_blank">StatQuest — Probability series</a>' },
+        { n: 'A4', t: 'Statistics: hypothesis testing, confidence intervals', r: '<a href="https://www.youtube.com/@statquest" target="_blank">StatQuest — Statistics fundamentals</a>' },
+        { n: 'A5', t: 'Bias-variance, overfitting, regularization', r: '<a href="https://www.deeplearningbook.org/" target="_blank">Deep Learning Book ch. 5</a>' },
+        { n: 'A6', t: 'Classical ML evaluation (precision/recall/ROC/F1)', r: 'StatQuest + scikit-learn metrics docs' },
+        { n: 'A7', t: 'Mini-project: logistic regression from scratch in NumPy', r: '' }
+      ]},
+      { num: 'Week B', title: 'Neural network internals', added: true, days: [
+        { n: 'B1', t: 'NN: Zero to Hero pt 1–2 (micrograd)', r: '<a href="https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ" target="_blank">Karpathy — Zero to Hero playlist</a>' },
+        { n: 'B2', t: 'Backprop intuition pt 3 (makemore)', r: 'Karpathy NN: Zero to Hero' },
+        { n: 'B3', t: 'GPT from scratch pt 4', r: 'Karpathy — Let\'s build GPT' },
+        { n: 'B4', t: 'Tokenizers & BPE', r: 'Karpathy — Let\'s build the GPT tokenizer' },
+        { n: 'B5', t: 'Optimization (Adam, LR schedules)', r: 'fast.ai practical DL lesson 4' },
+        { n: 'B6', t: 'Attention mechanism deep dive', r: '<a href="https://jalammar.github.io/illustrated-transformer/" target="_blank">Illustrated Transformer — Jay Alammar</a>' },
+        { n: 'B7', t: 'Mini-project: train a tiny transformer on your own dataset', r: '' }
+      ]}
+    ]},
+    { id: 'p1', title: 'Phase 1', subtitle: 'Modern foundations', weeks: [
+      { num: 'Week 1', title: 'Python 3.12+ & modern tooling', days: [
+        { n: 1, t: 'uv + modern Python project setup', r: '<a href="https://www.youtube.com/watch?v=igWlYl3asKw" target="_blank">ArjanCodes</a> + <a href="https://docs.astral.sh/uv/" target="_blank">uv docs</a>' },
+        { n: 2, t: 'Async Python deep dive', r: '<a href="https://realpython.com/async-io-python/" target="_blank">Real Python asyncio</a>' },
+        { n: 3, t: 'Pydantic v2 mastery', r: '<a href="https://docs.pydantic.dev/latest/" target="_blank">Pydantic docs</a>' },
+        { n: 4, t: 'Modern project structure (ruff, mypy, pre-commit)', r: '<a href="https://docs.astral.sh/ruff/" target="_blank">Ruff docs</a>' },
+        { n: 5, t: 'Polars (replaces Pandas)', r: '<a href="https://docs.pola.rs/" target="_blank">Polars docs</a>' },
+        { n: 6, t: 'DuckDB for analytics', r: '<a href="https://duckdb.org/docs/" target="_blank">DuckDB docs</a>' },
+        { n: 7, t: 'Mini-project: async data ingestion service', r: '' }
+      ]},
+      { num: 'Week 2', title: 'ML & deep learning essentials', days: [
+        { n: 8, t: 'ML lifecycle 2027', r: '<a href="https://www.youtube.com/watch?v=i_LwzRVP7bg" target="_blank">freeCodeCamp ML</a>' },
+        { n: 9, t: 'PyTorch 2.x + torch.compile', r: '<a href="https://pytorch.org/docs/" target="_blank">PyTorch docs</a>' },
+        { n: 10, t: 'Hugging Face Transformers', r: '<a href="https://huggingface.co/learn/nlp-course" target="_blank">HF NLP course</a>' },
+        { n: 11, t: 'Embeddings + vector search', r: '<a href="https://www.sbert.net/" target="_blank">SBERT docs</a>' },
+        { n: 12, t: 'LLM-era evaluation', r: '<a href="https://docs.ragas.io/" target="_blank">Ragas</a> + <a href="https://docs.confident-ai.com/" target="_blank">DeepEval</a>' },
+        { n: 13, t: 'Responsible AI + Model Cards', r: '<a href="https://fairlearn.org/" target="_blank">Fairlearn</a>' },
+        { n: 14, t: 'Mini-project: E2E classifier with fairness report', r: '' }
+      ]},
+      { num: 'Week 3', title: 'Containers & dev environments', days: [
+        { n: 15, t: 'OrbStack + BuildKit', r: '<a href="https://www.youtube.com/watch?v=pg19Z8LL06w" target="_blank">Docker by Nana</a>' },
+        { n: 16, t: 'Dev Containers / Codespaces', r: '<a href="https://containers.dev/" target="_blank">containers.dev</a>' },
+        { n: 17, t: 'Distroless + multi-stage builds', r: '<a href="https://github.com/GoogleContainerTools/distroless" target="_blank">Distroless</a>' },
+        { n: 18, t: 'Trivy, Cosign, SBOM', r: '<a href="https://docs.sigstore.dev/cosign/" target="_blank">Cosign</a> + <a href="https://aquasecurity.github.io/trivy/" target="_blank">Trivy</a>' },
+        { n: 19, t: 'Docker Compose v2 profiles', r: '<a href="https://docs.docker.com/compose/profiles/" target="_blank">Compose profiles</a>' },
+        { n: 20, t: 'GPU containers', r: '<a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html" target="_blank">NVIDIA toolkit</a>' },
+        { n: 21, t: 'Mini-project: signed, scanned, GPU-enabled ML image', r: '' }
+      ]}
+    ]},
+    { id: 'p2', title: 'Phase 2', subtitle: 'Cloud-native infrastructure', weeks: [
+      { num: 'Week 4', title: 'Kubernetes mastery', days: [
+        { n: 22, t: 'K8s architecture', r: '<a href="https://www.youtube.com/watch?v=X48VuDVv0do" target="_blank">K8s by Nana</a>' },
+        { n: 23, t: 'Deployments/StatefulSets/Jobs', r: '<a href="https://k3d.io/" target="_blank">k3d</a>' },
+        { n: 24, t: 'Gateway API + cert-manager', r: '<a href="https://gateway-api.sigs.k8s.io/" target="_blank">Gateway API</a>' },
+        { n: 25, t: 'Helm + Kustomize', r: '<a href="https://www.youtube.com/watch?v=-ykwb1d0DXU" target="_blank">Helm by Nana</a>' },
+        { n: 26, t: 'RBAC + Network Policies + Pod Security', r: '<a href="https://kubernetes.io/docs/concepts/security/pod-security-standards/" target="_blank">Pod security</a>' },
+        { n: 27, t: 'KEDA auto-scaling', r: '<a href="https://keda.sh/docs/latest/" target="_blank">KEDA</a>' },
+        { n: 28, t: 'Mini-project: production K8s deployment', r: '' }
+      ]},
+      { num: 'Week 4.5', title: 'Service mesh & multi-tenancy', added: true, days: [
+        { n: 'C1', t: 'Service mesh fundamentals (Istio vs Linkerd)', r: '<a href="https://istio.io/latest/docs/" target="_blank">Istio</a> + <a href="https://linkerd.io/2/overview/" target="_blank">Linkerd</a>' },
+        { n: 'C2', t: 'mTLS, service-to-service auth', r: 'Istio security docs' },
+        { n: 'C3', t: 'Multi-tenant K8s patterns for ML', r: '<a href="https://github.com/kubernetes-sigs/multi-tenancy" target="_blank">k8s multi-tenancy WG</a>' },
+        { n: 'C4', t: 'Mini-project: 2 isolated ML namespaces w/ mTLS', r: '' }
+      ]},
+      { num: 'Week 5', title: 'Infrastructure as code & GitOps', days: [
+        { n: 29, t: 'OpenTofu / Terraform', r: '<a href="https://opentofu.org/docs/" target="_blank">OpenTofu</a>' },
+        { n: 30, t: 'Terragrunt', r: '<a href="https://terragrunt.gruntwork.io/" target="_blank">Terragrunt</a>' },
+        { n: 31, t: 'Pulumi (Python IaC)', r: '<a href="https://www.pulumi.com/docs/" target="_blank">Pulumi</a>' },
+        { n: 32, t: 'ArgoCD', r: '<a href="https://argo-cd.readthedocs.io/" target="_blank">ArgoCD</a>' },
+        { n: 33, t: 'Flux CD + Flagger', r: '<a href="https://fluxcd.io/" target="_blank">Flux</a>' },
+        { n: 34, t: 'Crossplane', r: '<a href="https://docs.crossplane.io/" target="_blank">Crossplane</a>' },
+        { n: 35, t: 'Mini-project: full GitOps stack', r: '' }
+      ]},
+      { num: 'Week 6', title: 'Cloud ML platforms', days: [
+        { n: 36, t: 'AWS Bedrock', r: '<a href="https://docs.aws.amazon.com/bedrock/" target="_blank">Bedrock</a>' },
+        { n: 37, t: 'SageMaker Pipelines', r: '<a href="https://github.com/aws/amazon-sagemaker-examples" target="_blank">SageMaker examples</a>' },
+        { n: 38, t: 'Vertex AI + Gemini', r: '<a href="https://cloud.google.com/vertex-ai/docs" target="_blank">Vertex AI</a>' },
+        { n: 39, t: 'EKS vs GKE Autopilot', r: '<a href="https://www.eksworkshop.com/" target="_blank">EKS Workshop</a>' },
+        { n: 40, t: 'Modal.com', r: '<a href="https://modal.com/docs" target="_blank">Modal</a>' },
+        { n: 41, t: 'RunPod / Lambda Labs', r: '<a href="https://docs.runpod.io/" target="_blank">RunPod</a>' },
+        { n: 42, t: 'Mini-project: multi-cloud cost analysis', r: '' }
+      ]},
+      { num: 'Week 7', title: 'Workflow orchestration', days: [
+        { n: 43, t: 'Prefect 3.x', r: '<a href="https://docs.prefect.io/" target="_blank">Prefect</a>' },
+        { n: 44, t: 'Airflow 2.10+', r: '<a href="https://academy.astronomer.io/" target="_blank">Astronomer Academy</a>' },
+        { n: 45, t: 'Dagster', r: '<a href="https://courses.dagster.io/" target="_blank">Dagster University</a>' },
+        { n: 46, t: 'Kubeflow Pipelines v2', r: '<a href="https://www.kubeflow.org/docs/components/pipelines/" target="_blank">KFP</a>' },
+        { n: 47, t: 'Argo Workflows', r: '<a href="https://argoproj.github.io/argo-workflows/" target="_blank">Argo Workflows</a>' },
+        { n: 48, t: 'Metaflow', r: '<a href="https://docs.metaflow.org/" target="_blank">Metaflow</a>' },
+        { n: 49, t: 'Mini-project: end-to-end retraining pipeline', r: '' }
+      ]}
+    ]},
+    { id: 'p3', title: 'Phase 3', subtitle: 'LLMOps & modern AI stack', weeks: [
+      { num: 'Week 8', title: 'LLM serving & inference', days: [
+        { n: 50, t: 'LLM inference landscape', r: '<a href="https://huggingface.co/blog/llm-inference" target="_blank">HF blog</a>' },
+        { n: 51, t: 'vLLM', r: '<a href="https://docs.vllm.ai/" target="_blank">vLLM</a>' },
+        { n: 52, t: 'PagedAttention deep dive', r: '<a href="https://arxiv.org/abs/2309.06180" target="_blank">vLLM paper</a>' },
+        { n: 53, t: 'Quantization (GPTQ/AWQ/GGUF)', r: '<a href="https://huggingface.co/docs/transformers/main/en/quantization" target="_blank">HF quantization</a>' },
+        { n: 54, t: 'Speculative decoding', r: '<a href="https://docs.vllm.ai/en/latest/usage/spec_decode.html" target="_blank">vLLM spec decoding</a>' },
+        { n: 55, t: 'TGI (Text Generation Inference)', r: '<a href="https://github.com/huggingface/text-generation-inference" target="_blank">TGI</a>' },
+        { n: 56, t: 'Ollama + LiteLLM', r: '<a href="https://docs.litellm.ai/" target="_blank">LiteLLM</a>' },
+        { n: 57, t: 'Mini-project: LLM gateway with caching + routing', r: '' }
+      ]},
+      { num: 'Week 8.5', title: 'Classical model serving', added: true, days: [
+        { n: 'D1', t: 'Triton Inference Server', r: '<a href="https://docs.nvidia.com/deeplearning/triton-inference-server/" target="_blank">Triton docs</a>' },
+        { n: 'D2', t: 'TorchServe & TensorFlow Serving', r: '<a href="https://pytorch.org/serve/" target="_blank">TorchServe</a>' },
+        { n: 'D3', t: 'BentoML for unified serving', r: '<a href="https://docs.bentoml.com/" target="_blank">BentoML</a>' },
+        { n: 'D4', t: 'KServe / Seldon Core on K8s', r: '<a href="https://kserve.github.io/website/" target="_blank">KServe</a>' },
+        { n: 'D5', t: 'Mini-project: XGBoost + DistilBERT via BentoML + KServe', r: '' }
+      ]},
+      { num: 'Week 9', title: 'RAG & vector databases', days: [
+        { n: 58, t: 'RAG patterns 2027', r: '<a href="https://www.anthropic.com/news/contextual-retrieval" target="_blank">Anthropic Contextual Retrieval</a>' },
+        { n: 59, t: 'Vector DB comparison', r: '<a href="https://qdrant.tech/documentation/" target="_blank">Qdrant</a> + <a href="https://github.com/pgvector/pgvector" target="_blank">pgvector</a>' },
+        { n: 60, t: 'Hybrid search', r: '<a href="https://qdrant.tech/articles/hybrid-search/" target="_blank">Qdrant hybrid</a>' },
+        { n: 61, t: 'Re-rankers', r: '<a href="https://github.com/FlagOpen/FlagEmbedding" target="_blank">BGE rerankers</a>' },
+        { n: 62, t: 'Chunking strategies', r: '<a href="https://arxiv.org/abs/2409.04701" target="_blank">Late Chunking paper</a>' },
+        { n: 63, t: 'GraphRAG', r: '<a href="https://github.com/microsoft/graphrag" target="_blank">Microsoft GraphRAG</a>' },
+        { n: 64, t: 'RAG evaluation', r: '<a href="https://docs.ragas.io/" target="_blank">Ragas</a> + <a href="https://www.trulens.org/" target="_blank">TruLens</a>' },
+        { n: 65, t: 'Mini-project: production RAG with eval CI', r: '' }
+      ]},
+      { num: 'Week 10', title: 'Agent systems & AgentOps', days: [
+        { n: 66, t: 'Agent architectures', r: '<a href="https://www.anthropic.com/research/building-effective-agents" target="_blank">Anthropic: Building Effective Agents</a>' },
+        { n: 67, t: 'LangGraph', r: '<a href="https://langchain-ai.github.io/langgraph/" target="_blank">LangGraph</a>' },
+        { n: 68, t: 'CrewAI / AutoGen', r: '<a href="https://docs.crewai.com/" target="_blank">CrewAI</a>' },
+        { n: 69, t: 'Tool calling + guardrails', r: '<a href="https://www.guardrailsai.com/docs" target="_blank">Guardrails AI</a>' },
+        { n: 70, t: 'Agent memory', r: '<a href="https://docs.mem0.ai/" target="_blank">Mem0</a>' },
+        { n: 71, t: 'Agent observability', r: '<a href="https://langfuse.com/docs" target="_blank">LangFuse</a>' },
+        { n: 72, t: 'Sandboxing', r: '<a href="https://e2b.dev/docs" target="_blank">E2B</a>' },
+        { n: 73, t: 'Mini-project: multi-agent production system', r: '' }
+      ]},
+      { num: 'Week 11', title: 'Fine-tuning & customization', days: [
+        { n: 74, t: 'RAG vs fine-tune decision', r: '<a href="https://huggingface.co/docs/transformers/training" target="_blank">HF fine-tuning</a>' },
+        { n: 75, t: 'LoRA / QLoRA', r: '<a href="https://huggingface.co/docs/peft/" target="_blank">PEFT</a>' },
+        { n: 76, t: 'Unsloth', r: '<a href="https://github.com/unslothai/unsloth" target="_blank">Unsloth</a>' },
+        { n: 77, t: 'Axolotl', r: '<a href="https://github.com/OpenAccess-AI-Collective/axolotl" target="_blank">Axolotl</a>' },
+        { n: 78, t: 'DPO/ORPO/KTO with TRL', r: '<a href="https://huggingface.co/docs/trl/" target="_blank">TRL</a>' },
+        { n: 79, t: 'Synthetic data', r: '<a href="https://distilabel.argilla.io/" target="_blank">Distilabel</a>' },
+        { n: 80, t: 'Model merging', r: '<a href="https://github.com/arcee-ai/mergekit" target="_blank">mergekit</a>' },
+        { n: 81, t: 'Mini-project: custom domain LLM', r: '' }
+      ]},
+      { num: 'Week 11.5', title: 'Distributed training', added: true, days: [
+        { n: 'E1', t: 'Data parallel vs model parallel', r: '<a href="https://huggingface.co/docs/transformers/perf_train_gpu_many" target="_blank">HF distributed training</a>' },
+        { n: 'E2', t: 'PyTorch FSDP', r: '<a href="https://pytorch.org/tutorials/intermediate/FSDP_tutorial.html" target="_blank">FSDP tutorial</a>' },
+        { n: 'E3', t: 'DeepSpeed & ZeRO 1/2/3', r: '<a href="https://www.deepspeed.ai/" target="_blank">DeepSpeed</a>' },
+        { n: 'E4', t: 'Megatron-LM tensor & pipeline parallelism', r: '<a href="https://github.com/NVIDIA/Megatron-LM" target="_blank">Megatron-LM</a>' },
+        { n: 'E5', t: 'Multi-node training on K8s', r: '<a href="https://www.kubeflow.org/docs/components/training/" target="_blank">Training Operator</a>' },
+        { n: 'E6', t: 'Checkpointing & spot resumption', r: '<a href="https://pytorch.org/docs/stable/distributed.checkpoint.html" target="_blank">torch.distributed.checkpoint</a>' },
+        { n: 'E7', t: 'Mini-project: fine-tune 7B with FSDP on 2 GPUs', r: '' }
+      ]},
+      { num: 'Week 12', title: 'Experiment tracking, registries & feature stores', days: [
+        { n: 82, t: 'MLflow 3.x', r: '<a href="https://mlflow.org/docs/latest/index.html" target="_blank">MLflow</a>' },
+        { n: 83, t: 'W&B', r: '<a href="https://docs.wandb.ai/" target="_blank">W&B</a>' },
+        { n: 84, t: 'DVC + LakeFS', r: '<a href="https://dvc.org/doc" target="_blank">DVC</a> + <a href="https://docs.lakefs.io/" target="_blank">LakeFS</a>' },
+        { n: 85, t: 'Feast', r: '<a href="https://docs.feast.dev/" target="_blank">Feast</a>' },
+        { n: 86, t: 'Tecton concepts', r: '<a href="https://www.tecton.ai/blog/" target="_blank">Tecton blog</a>' },
+        { n: 87, t: 'Model registry patterns', r: '<a href="https://mlflow.org/docs/latest/model-registry.html" target="_blank">MLflow registry</a>' },
+        { n: 88, t: 'Mini-project: full reproducibility stack', r: '' }
+      ]},
+      { num: 'Week 13', title: 'Data & streaming for AI', days: [
+        { n: 89, t: 'Iceberg/Delta', r: '<a href="https://iceberg.apache.org/docs/latest/" target="_blank">Iceberg</a>' },
+        { n: 90, t: 'Kafka / Redpanda', r: '<a href="https://developer.confluent.io/courses/" target="_blank">Confluent free course</a>' },
+        { n: 91, t: 'Flink', r: '<a href="https://nightlies.apache.org/flink/flink-docs-stable/" target="_blank">Flink</a>' },
+        { n: 92, t: 'dbt', r: '<a href="https://courses.getdbt.com/" target="_blank">dbt Learn</a>' },
+        { n: 93, t: 'Data quality', r: '<a href="https://docs.greatexpectations.io/" target="_blank">Great Expectations</a>' },
+        { n: 94, t: 'Debezium CDC', r: '<a href="https://debezium.io/documentation/" target="_blank">Debezium</a>' },
+        { n: 95, t: 'Mini-project: real-time feature pipeline', r: '' }
+      ]},
+      { num: 'Week 13.5', title: 'Online stores & DB internals', added: true, days: [
+        { n: 'F1', t: 'OLAP vs OLTP for feature serving', r: '<a href="https://dataintensive.net/" target="_blank">DDIA ch.3</a>' },
+        { n: 'F2', t: 'Redis & DynamoDB as low-latency stores', r: 'Redis docs + DynamoDB best practices' },
+        { n: 'F3', t: 'ScyllaDB for high-throughput serving', r: '<a href="https://www.scylladb.com/learn/" target="_blank">ScyllaDB University</a>' },
+        { n: 'F4', t: 'Read replicas & connection pooling', r: 'PgBouncer + read-replica patterns' },
+        { n: 'F5', t: 'Mini-project: online feature store with Redis + Feast', r: '' }
+      ]}
+    ]},
+    { id: 'p4', title: 'Phase 4', subtitle: 'Production excellence', weeks: [
+      { num: 'Week 14', title: 'CI/CD for AI systems', days: [
+        { n: 96, t: 'GitHub Actions advanced', r: '<a href="https://docs.github.com/en/actions" target="_blank">GH Actions</a>' },
+        { n: 97, t: 'CML', r: '<a href="https://cml.dev/" target="_blank">CML</a>' },
+        { n: 98, t: 'Model testing', r: '<a href="https://docs.deepchecks.com/" target="_blank">Deepchecks</a>' },
+        { n: 99, t: 'LLM CI testing', r: '<a href="https://www.promptfoo.dev/docs/intro/" target="_blank">Promptfoo</a>' },
+        { n: 100, t: 'Canary + Argo Rollouts', r: '<a href="https://argoproj.github.io/argo-rollouts/" target="_blank">Argo Rollouts</a>' },
+        { n: 101, t: 'Feature flags', r: '<a href="https://openfeature.dev/" target="_blank">OpenFeature</a>' },
+        { n: 102, t: 'Mini-project: zero-downtime LLM deployment', r: '' }
+      ]},
+      { num: 'Week 14.5', title: 'A/B testing & experimentation', added: true, days: [
+        { n: 'G1', t: 'A/B test design (power, MDE, sample size)', r: '<a href="https://docs.growthbook.io/" target="_blank">GrowthBook</a>' },
+        { n: 'G2', t: 'GrowthBook / Eppo / Statsig', r: '<a href="https://www.eppo.cloud/blog" target="_blank">Eppo blog</a>' },
+        { n: 'G3', t: 'Offline vs online metric correlation', r: '<a href="https://eugeneyan.com/writing/" target="_blank">Eugene Yan</a>' },
+        { n: 'G4', t: 'Multi-armed bandits for model selection', r: 'Vowpal Wabbit contextual bandits' },
+        { n: 'G5', t: 'Mini-project: A/B test two model versions', r: '' }
+      ]},
+      { num: 'Week 15', title: 'Observability for AI systems', days: [
+        { n: 103, t: 'OpenTelemetry for Python', r: '<a href="https://opentelemetry.io/docs/languages/python/" target="_blank">OTel Python</a>' },
+        { n: 104, t: 'Grafana LGTM', r: '<a href="https://grafana.com/docs/" target="_blank">Grafana</a>' },
+        { n: 105, t: 'LLM observability', r: '<a href="https://langfuse.com/docs" target="_blank">LangFuse</a>' },
+        { n: 106, t: 'Drift detection', r: '<a href="https://docs.evidentlyai.com/" target="_blank">Evidently</a>' },
+        { n: 107, t: 'Hallucination monitoring', r: '<a href="https://www.patronus.ai/" target="_blank">Patronus</a>' },
+        { n: 108, t: 'Runbooks', r: '<a href="https://sre.google/books/" target="_blank">Google SRE Book</a>' },
+        { n: 109, t: 'Mini-project: full observability stack', r: '' }
+      ]},
+      { num: 'Week 16', title: 'Security, compliance & responsible AI', days: [
+        { n: 110, t: 'EU AI Act + ISO 42001', r: '<a href="https://artificialintelligenceact.eu/" target="_blank">EU AI Act</a>' },
+        { n: 111, t: 'NIST AI RMF', r: '<a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank">NIST AI RMF</a>' },
+        { n: 112, t: 'OWASP LLM Top 10', r: '<a href="https://genai.owasp.org/llm-top-10/" target="_blank">OWASP LLM</a>' },
+        { n: 113, t: 'Prompt injection defenses', r: '<a href="https://github.com/protectai/rebuff" target="_blank">Rebuff</a>' },
+        { n: 114, t: 'PII redaction', r: '<a href="https://microsoft.github.io/presidio/" target="_blank">Presidio</a>' },
+        { n: 115, t: 'Secrets management', r: '<a href="https://developer.hashicorp.com/vault/docs" target="_blank">Vault</a>' },
+        { n: 116, t: 'Supply chain (SLSA)', r: '<a href="https://slsa.dev/" target="_blank">SLSA</a>' },
+        { n: 117, t: 'Mini-project: compliance-ready LLM app', r: '' }
+      ]},
+      { num: 'Week 17', title: 'Edge AI & on-device inference', days: [
+        { n: 118, t: 'Edge AI landscape', r: '<a href="https://www.edgeaifoundation.org/" target="_blank">Edge AI Foundation</a>' },
+        { n: 119, t: 'ONNX Runtime', r: '<a href="https://onnxruntime.ai/docs/" target="_blank">ONNX RT</a>' },
+        { n: 120, t: 'WebGPU + Transformers.js', r: '<a href="https://huggingface.co/docs/transformers.js" target="_blank">Transformers.js</a>' },
+        { n: 121, t: 'MLC-LLM', r: '<a href="https://llm.mlc.ai/docs/" target="_blank">MLC-LLM</a>' },
+        { n: 122, t: 'Jetson / Coral', r: '<a href="https://developer.nvidia.com/embedded/jetson-developer-kits" target="_blank">Jetson</a>' },
+        { n: 123, t: 'Federated learning', r: '<a href="https://flower.ai/docs/" target="_blank">Flower</a>' },
+        { n: 124, t: 'Mini-project: browser RAG with WebGPU', r: '' }
+      ]},
+      { num: 'Week 18', title: 'Cost engineering & FinOps', days: [
+        { n: 125, t: 'LLM cost math', r: '<a href="https://artificialanalysis.ai/" target="_blank">Artificial Analysis</a>' },
+        { n: 126, t: 'Semantic caching', r: '<a href="https://github.com/zilliztech/GPTCache" target="_blank">GPTCache</a>' },
+        { n: 127, t: 'Prompt compression', r: '<a href="https://github.com/microsoft/LLMLingua" target="_blank">LLMLingua</a>' },
+        { n: 128, t: 'Model routing', r: '<a href="https://github.com/lm-sys/RouteLLM" target="_blank">RouteLLM</a>' },
+        { n: 129, t: 'Karpenter spot GPUs', r: '<a href="https://karpenter.sh/" target="_blank">Karpenter</a>' },
+        { n: 130, t: 'OpenCost', r: '<a href="https://www.opencost.io/docs/" target="_blank">OpenCost</a>' },
+        { n: 131, t: 'Mini-project: LLM gateway with 5–10× cost cut', r: '' }
+      ]},
+      { num: 'Week 18.5', title: 'Training FinOps & soft skills', added: true, days: [
+        { n: 'H1', t: 'Training cost modeling: GPU-hour math', r: '<a href="https://lambdalabs.com/blog" target="_blank">Lambda Labs blog</a>' },
+        { n: 'H2', t: 'Spot/preemptible training strategies', r: 'Karpenter + checkpoint resumption' },
+        { n: 'H3', t: 'Stakeholder management: DS & PM', r: '<a href="https://eugeneyan.com/writing/" target="_blank">Eugene Yan</a>' },
+        { n: 'H4', t: 'Writing design docs & RFCs', r: '<a href="https://huyenchip.com/blog/" target="_blank">Chip Huyen</a>' },
+        { n: 'H5', t: 'On-call & incident response for ML', r: 'Google SRE incident response chapter' }
+      ]}
+    ]},
+    { id: 'p5', title: 'Phase 5', subtitle: 'Portfolio, specialization & launch', weeks: [
+      { num: 'Weeks 19–20', title: 'Capstone project', days: [
+        { n: 132, t: 'Design capstone architecture', r: '<a href="https://madewithml.com/" target="_blank">Made With ML</a>' },
+        { n: 133, t: 'Set up infrastructure (IaC + K8s)', r: '' },
+        { n: 134, t: 'Build data + training pipeline', r: '' },
+        { n: 135, t: 'Build serving + RAG layer', r: '' },
+        { n: 136, t: 'Add observability + drift detection', r: '' },
+        { n: 137, t: 'Add CI/CD with eval gates', r: '' },
+        { n: 138, t: 'Add A/B testing harness', r: '' },
+        { n: 139, t: 'Security review + threat modeling', r: '' },
+        { n: 140, t: 'Cost optimization pass', r: '' },
+        { n: 141, t: 'Load testing + chaos engineering', r: '' },
+        { n: 142, t: 'Record video walkthrough', r: '' },
+        { n: 143, t: 'Write capstone case study blog post', r: '' },
+        { n: 144, t: 'Polish README + architecture diagrams', r: '' },
+        { n: 145, t: 'Capstone retrospective', r: '' }
+      ]},
+      { num: 'Week 21', title: 'Certifications', days: [
+        { n: 146, t: 'CKAD prep & exam', r: '<a href="https://www.cncf.io/training/certification/ckad/" target="_blank">CKAD</a>' },
+        { n: 147, t: 'AWS ML Engineer Associate prep', r: '<a href="https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/" target="_blank">AWS ML</a>' },
+        { n: 148, t: 'Complete MLOps Zoomcamp', r: '<a href="https://github.com/DataTalksClub/mlops-zoomcamp" target="_blank">MLOps Zoomcamp</a>' },
+        { n: 149, t: 'Complete LLM Zoomcamp', r: '<a href="https://github.com/DataTalksClub/llm-zoomcamp" target="_blank">LLM Zoomcamp</a>' },
+        { n: 150, t: 'Take 2nd certification exam', r: '' },
+        { n: 151, t: 'Document certs on LinkedIn + resume', r: '' },
+        { n: 152, t: 'Week buffer / catch-up', r: '' }
+      ]},
+      { num: 'Week 22', title: 'Open source & personal brand', days: [
+        { n: 153, t: 'First OSS issue: vLLM or BentoML', r: '<a href="https://github.com/vllm-project/vllm" target="_blank">vLLM</a>' },
+        { n: 154, t: 'Set up personal site (Astro/Next.js)', r: '<a href="https://astro.build/" target="_blank">Astro</a>' },
+        { n: 155, t: 'Write technical blog post #1', r: '' },
+        { n: 156, t: 'Write technical blog post #2', r: '' },
+        { n: 157, t: 'Publish PyPI package', r: '' },
+        { n: 158, t: 'Submit OSS PR + iterate', r: '' },
+        { n: 159, t: 'Record meetup talk', r: '' }
+      ]},
+      { num: 'Week 23', title: 'System design & interview prep', days: [
+        { n: 160, t: 'Read Chip Huyen ML interview book', r: '<a href="https://huyenchip.com/ml-interviews-book/" target="_blank">ML Interviews</a>' },
+        { n: 161, t: 'ML system design — recommender', r: '<a href="https://www.hellointerview.com/" target="_blank">Hello Interview</a>' },
+        { n: 162, t: 'ML system design — LLM platform', r: '' },
+        { n: 163, t: 'ML system design — feature store', r: '' },
+        { n: 164, t: 'LeetCode/coding refresh', r: '<a href="https://neetcode.io/" target="_blank">NeetCode</a>' },
+        { n: 165, t: 'Mock interview #1 (Pramp)', r: '<a href="https://www.pramp.com/" target="_blank">Pramp</a>' },
+        { n: 166, t: 'Mock interview #2 (interviewing.io)', r: '<a href="https://interviewing.io/" target="_blank">interviewing.io</a>' }
+      ]},
+      { num: 'Week 24', title: 'Job hunt execution', days: [
+        { n: 167, t: 'Polish resume + LinkedIn', r: '<a href="https://www.levels.fyi/" target="_blank">Levels.fyi</a>' },
+        { n: 168, t: 'Apply to 30+ targeted roles', r: '<a href="https://mlops.community/jobs/" target="_blank">MLOps Community jobs</a>' }
+      ]}
+    ]}
+  ]
+};
+
+// ============================================================
+//  STATE
+// ============================================================
+const STORAGE_KEY = 'mlops-roadmap-tracker-v2';
+let state = { completed: {}, logs: {}, openPhases: new Set(['p0','p1','p2','p3','p4','p5']), editingDay: null };
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      state.completed = parsed.completed || {};
+      state.logs = parsed.logs || {};
+    }
+  } catch (e) { console.warn('Load failed', e); }
+}
+
+function save() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      completed: state.completed,
+      logs: state.logs,
+      savedAt: Date.now()
+    }));
+  } catch (e) { console.warn('Save failed', e); }
+}
+
+// ============================================================
+//  HELPERS
+// ============================================================
+function allDays() {
+  const out = [];
+  DATA.phases.forEach(p => p.weeks.forEach(w => w.days.forEach(d => out.push({ ...d, phase: p, week: w }))));
+  return out;
+}
+
+function computeStats() {
+  const days = allDays();
+  const total = days.length;
+  const done = days.filter(d => state.completed[d.n]).length;
+  const pct = Math.round((done / total) * 100);
+  const logged = Object.values(state.logs).filter(l => l && (l.notes || l.url)).length;
+
+  // streak — consecutive days with any log entry
+  const datesWithLogs = new Set();
+  Object.values(state.logs).forEach(l => {
+    if (l && l.savedAt) {
+      const d = new Date(l.savedAt);
+      datesWithLogs.add(`${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`);
+    }
+  });
+  Object.values(state.completed).forEach(ts => {
+    if (ts) {
+      const d = new Date(ts);
+      datesWithLogs.add(`${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`);
+    }
+  });
+  let streak = 0;
+  const today = new Date();
+  for (let i = 0; i < 365; i++) {
+    const d = new Date(today);
+    d.setDate(d.getDate() - i);
+    const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+    if (datesWithLogs.has(key)) streak++;
+    else if (i > 0) break;
+  }
+  return { total, done, pct, logged, streak, remaining: total - done };
+}
+
+function fmtDate(ts) {
+  if (!ts) return '';
+  return new Date(ts).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function escapeHTML(s) {
+  return String(s || '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ============================================================
+//  RENDER
+// ============================================================
+function renderTopbarAndStats() {
+  const s = computeStats();
+  document.getElementById('tb-pct').textContent = s.pct + '%';
+  document.getElementById('tb-done').textContent = s.done;
+  document.getElementById('tb-streak').textContent = s.streak + 'd';
+
+  document.getElementById('stats-mount').innerHTML = `
+    <div class="stat">
+      <div class="stat-label">Completed</div>
+      <div class="stat-value">${s.done}<small> / ${s.total}</small></div>
+      <div class="progress-track"><div class="progress-fill" style="width:${s.pct}%"></div></div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Progress</div>
+      <div class="stat-value">${s.pct}%</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Days logged</div>
+      <div class="stat-value">${s.logged}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Current streak</div>
+      <div class="stat-value">${s.streak}<small>days</small></div>
+    </div>
+  `;
+}
+
+function renderToday() {
+  const next = allDays().find(d => !state.completed[d.n]);
+  const mount = document.getElementById('today-mount');
+  if (!next) {
+    mount.innerHTML = `<div class="today-card"><div style="grid-column: 1 / -1; text-align: center;"><div class="today-label">Status</div><div class="today-topic">Roadmap complete. Ship it.</div></div></div>`;
+    return;
+  }
+  mount.innerHTML = `
+    <div class="today-card">
+      <div class="today-num">${next.n}</div>
+      <div>
+        <div class="today-label">Up next · ${escapeHTML(next.phase.title)} · ${escapeHTML(next.week.num)}</div>
+        <div class="today-topic">${escapeHTML(next.t)}</div>
+        ${next.r ? `<div class="today-context">${next.r}</div>` : ''}
+      </div>
+      <div class="today-cta">
+        <button class="btn btn-primary" onclick="markDone('${next.n}'); jumpToNext();">Mark done</button>
+        <button class="btn" onclick="openEditor('${next.n}')">Log work</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderPhases() {
+  const mount = document.getElementById('phases-mount');
+  let html = '';
+  DATA.phases.forEach(p => {
+    const totalDays = p.weeks.reduce((a, w) => a + w.days.length, 0);
+    const doneDays = p.weeks.reduce((a, w) => a + w.days.filter(d => state.completed[d.n]).length, 0);
+    const isOpen = state.openPhases.has(p.id);
+    html += `<div class="phase ${isOpen ? 'open' : ''}" id="phase-${p.id}">
+      <div class="phase-head" onclick="togglePhase('${p.id}')">
+        <div class="phase-id">${escapeHTML(p.title)}</div>
+        <div class="phase-title">${escapeHTML(p.subtitle)}</div>
+        <div class="phase-progress">${doneDays} / ${totalDays}</div>
+        <div class="phase-toggle">${isOpen ? '−' : '+'}</div>
+      </div>
+      <div class="phase-body">`;
+    p.weeks.forEach(w => {
+      html += `<div class="week">
+        <div class="week-head">
+          <div class="week-num">${escapeHTML(w.num)}</div>
+          <div class="week-title">${escapeHTML(w.title)}</div>
+          ${w.added ? '<div class="week-added">Added</div>' : ''}
+        </div>`;
+      w.days.forEach(d => {
+        const isDone = !!state.completed[d.n];
+        const isEditing = state.editingDay === String(d.n);
+        const log = state.logs[d.n] || {};
+        const hasLog = !!(log.notes || log.url);
+        html += `<div class="day ${isDone ? 'done' : ''} ${isEditing ? 'editing' : ''}" id="day-${d.n}">
+          <button class="day-check ${isDone ? 'checked' : ''}" onclick="toggleDone('${d.n}')" aria-label="Mark complete"></button>
+          <div class="day-num">${escapeHTML(String(d.n))}</div>
+          <div class="day-main">
+            <div class="day-topic">${escapeHTML(d.t)}${w.added ? '<span class="added-tag">Added</span>' : ''}</div>
+            ${d.r ? `<div class="day-resource">${d.r}</div>` : ''}
+          </div>
+          <button class="day-log-btn ${hasLog ? 'has-log' : ''}" onclick="openEditor('${d.n}')">${hasLog ? '✓ log' : 'log work'}</button>
+          ${isEditing ? renderEditor(d, log) : ''}
+        </div>`;
+      });
+      html += `</div>`;
+    });
+    html += `</div></div>`;
+  });
+  mount.innerHTML = html;
+}
+
+function renderEditor(d, log) {
+  return `<div class="day-editor">
+    <div class="editor-row">
+      <label class="editor-label">What I did today · day ${escapeHTML(String(d.n))} · ${escapeHTML(d.t)}</label>
+      <textarea class="editor-textarea" id="ed-notes-${d.n}" placeholder="Built X. Struggled with Y. Realized Z. Next time...">${escapeHTML(log.notes || '')}</textarea>
+    </div>
+    <div class="editor-row">
+      <label class="editor-label">GitHub issue / commit / PR URL</label>
+      <input type="text" class="editor-input" id="ed-url-${d.n}" placeholder="https://github.com/you/repo/commit/abc123" value="${escapeHTML(log.url || '')}" />
+    </div>
+    <div class="editor-actions">
+      <button class="btn btn-primary" onclick="saveLog('${d.n}')">Save entry</button>
+      <button class="btn" onclick="closeEditor()">Close</button>
+      ${log.savedAt ? `<span style="font-family: var(--mono); font-size: 10px; color: var(--ink-faint); align-self: center; margin-left: auto; letter-spacing: 0.1em;">Last saved · ${fmtDate(log.savedAt)}</span>` : ''}
+    </div>
+  </div>`;
+}
+
+function renderGaps() {
+  const mount = document.getElementById('gaps-mount');
+  mount.innerHTML = DATA.gaps.map(g => `
+    <div class="gap-card">
+      <div class="gap-card-tag">${escapeHTML(g.tag)}</div>
+      <div>
+        <h3>${escapeHTML(g.title)}</h3>
+        <p>${escapeHTML(g.why)}</p>
+        <ul>${g.items.map(i => `<li>${escapeHTML(i)}</li>`).join('')}</ul>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderLog() {
+  const mount = document.getElementById('log-mount');
+  const dayMap = {};
+  allDays().forEach(d => { dayMap[d.n] = d; });
+  const entries = Object.entries(state.logs)
+    .filter(([k, v]) => v && (v.notes || v.url))
+    .sort((a, b) => (b[1].savedAt || 0) - (a[1].savedAt || 0));
+  if (!entries.length) {
+    mount.innerHTML = '<div class="log-empty">No log entries yet.<br/>Complete a day, hit "log work", paste your GitHub URL.</div>';
+    return;
+  }
+  mount.innerHTML = entries.map(([n, log]) => {
+    const d = dayMap[n];
+    if (!d) return '';
+    return `<div class="log-entry">
+      <div class="log-head">
+        <span class="log-day-tag">Day ${escapeHTML(String(n))} · ${escapeHTML(d.week.title)}</span>
+        <span class="log-date">${fmtDate(log.savedAt)}</span>
+      </div>
+      <div class="log-topic">${escapeHTML(d.t)}</div>
+      ${log.notes ? `<div class="log-notes">${escapeHTML(log.notes)}</div>` : ''}
+      ${log.url ? `<div class="log-url"><a href="${escapeHTML(log.url)}" target="_blank">${escapeHTML(log.url)}</a></div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function renderDataIO() {
+  const exportData = JSON.stringify({ completed: state.completed, logs: state.logs }, null, 2);
+  document.getElementById('export-area').value = exportData;
+}
+
+function renderPhaseJumpNav() {
+  const mount = document.getElementById('phase-jump-nav');
+  if (!mount) return;
+  mount.innerHTML = DATA.phases.map(p => {
+    const totalDays = p.weeks.reduce((a, w) => a + w.days.length, 0);
+    const doneDays = p.weeks.reduce((a, w) => a + w.days.filter(d => state.completed[d.n]).length, 0);
+    const pct = Math.round((doneDays / totalDays) * 100);
+    return `<div onclick="scrollToPhase('${p.id}')" style="background: var(--bg-elev); padding: 14px 18px; cursor: pointer; transition: background .15s;" onmouseover="this.style.background='var(--bg-card)'" onmouseout="this.style.background='var(--bg-elev)'">
+      <div style="font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 4px;">${escapeHTML(p.title)}</div>
+      <div style="font-family: var(--serif); font-size: 16px; line-height: 1.3; margin-bottom: 6px;">${escapeHTML(p.subtitle)}</div>
+      <div style="display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 10px; color: var(--ink-dim);">
+        <span>${doneDays} / ${totalDays}</span>
+        <span style="color: var(--accent);">${pct}%</span>
+      </div>
+      <div style="height: 2px; background: var(--bg-deep); margin-top: 8px;"><div style="height:100%; background: var(--accent); width: ${pct}%; transition: width .3s;"></div></div>
+    </div>`;
+  }).join('');
+}
+
+window.scrollToPhase = function(pid) {
+  state.openPhases.add(pid);
+  renderPhases();
+  setTimeout(() => {
+    const el = document.getElementById('phase-' + pid);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 50);
+};
+
+function renderAll() {
+  renderTopbarAndStats();
+  renderToday();
+  renderPhaseJumpNav();
+  renderPhases();
+  renderGaps();
+  renderLog();
+  renderDataIO();
+  document.getElementById('footer-ts').textContent = 'Saved · ' + new Date().toLocaleString();
+}
+
+// ============================================================
+//  ACTIONS
+// ============================================================
+window.toggleDone = function(n) {
+  const key = String(n);
+  if (state.completed[key]) delete state.completed[key];
+  else state.completed[key] = Date.now();
+  save();
+  renderAll();
+};
+
+window.markDone = function(n) {
+  const key = String(n);
+  if (!state.completed[key]) {
+    state.completed[key] = Date.now();
+    save();
+    toast('Day ' + key + ' marked done');
+  }
+  renderAll();
+};
+
+window.togglePhase = function(pid) {
+  if (state.openPhases.has(pid)) state.openPhases.delete(pid);
+  else state.openPhases.add(pid);
+  renderPhases();
+};
+
+window.expandAll = function() {
+  DATA.phases.forEach(p => state.openPhases.add(p.id));
+  renderPhases();
+};
+
+window.collapseAll = function() {
+  state.openPhases.clear();
+  renderPhases();
+};
+
+window.openEditor = function(n) {
+  const key = String(n);
+  state.editingDay = key;
+  // find which phase and ensure it's open
+  for (const p of DATA.phases) {
+    for (const w of p.weeks) {
+      if (w.days.some(d => String(d.n) === key)) {
+        state.openPhases.add(p.id);
+        break;
+      }
+    }
+  }
+  // switch to roadmap section
+  switchSection('roadmap');
+  renderPhases();
+  setTimeout(() => {
+    const el = document.getElementById('day-' + key);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const ta = document.getElementById('ed-notes-' + key);
+      if (ta) ta.focus();
+    }
+  }, 100);
+};
+
+window.closeEditor = function() {
+  state.editingDay = null;
+  renderPhases();
+};
+
+window.saveLog = function(n) {
+  const key = String(n);
+  const notes = document.getElementById('ed-notes-' + key).value;
+  const url = document.getElementById('ed-url-' + key).value;
+  state.logs[key] = { notes, url, savedAt: Date.now() };
+  save();
+  toast('Log saved');
+  renderTopbarAndStats();
+  renderLog();
+  renderDataIO();
+};
+
+window.jumpToNext = function() {
+  const next = allDays().find(d => !state.completed[d.n]);
+  if (!next) return;
+  for (const p of DATA.phases) {
+    for (const w of p.weeks) {
+      if (w.days.some(d => String(d.n) === String(next.n))) {
+        state.openPhases.add(p.id);
+      }
+    }
+  }
+  switchSection('roadmap');
+  renderPhases();
+  setTimeout(() => {
+    const el = document.getElementById('day-' + next.n);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 100);
+};
+
+window.copyExport = function() {
+  const txt = document.getElementById('export-area').value;
+  navigator.clipboard.writeText(txt).then(() => toast('Copied to clipboard'));
+};
+
+window.downloadExport = function() {
+  const txt = document.getElementById('export-area').value;
+  const blob = new Blob([txt], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `mlops-roadmap-backup-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('Backup downloaded');
+};
+
+window.importData = function() {
+  const raw = document.getElementById('import-area').value.trim();
+  if (!raw) { toast('Paste JSON first'); return; }
+  try {
+    const parsed = JSON.parse(raw);
+    if (!parsed.completed || !parsed.logs) throw new Error('Invalid format');
+    state.completed = parsed.completed;
+    state.logs = parsed.logs;
+    save();
+    renderAll();
+    document.getElementById('import-area').value = '';
+    toast('Restored');
+  } catch (e) {
+    toast('Invalid JSON');
+  }
+};
+
+window.resetData = function() {
+  if (!confirm('This will delete all your progress and logs. Are you sure?')) return;
+  state.completed = {};
+  state.logs = {};
+  save();
+  renderAll();
+  toast('Reset complete');
+};
+
+// ============================================================
+//  NAV
+// ============================================================
+function switchSection(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('section-' + name).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.dataset.section === name));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+document.querySelectorAll('.nav-btn').forEach(b => {
+  b.addEventListener('click', () => switchSection(b.dataset.section));
+});
+
+// ============================================================
+//  INIT
+// ============================================================
+load();
+renderAll();
+
+// auto-save heartbeat (every 30s, harmless)
+setInterval(() => {
+  document.getElementById('footer-ts').textContent = 'Saved · ' + new Date().toLocaleString();
+}, 30000);
+</script>
+</body>
+</html>
