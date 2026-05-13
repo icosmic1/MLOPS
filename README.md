@@ -1,6 +1,6 @@
 # MLOPS Roadmap Site
 
-This repository hosts a static site from `/home/runner/work/MLOPS/MLOPS/index.html`.
+This repository hosts a static site from `index.html` at the repository root.
 
 ## Local preview
 
@@ -16,7 +16,7 @@ Then open `http://localhost:8000/`.
 
 This repo includes a Pages workflow at:
 
-- `/home/runner/work/MLOPS/MLOPS/.github/workflows/deploy-pages.yml`
+- `.github/workflows/deploy-pages.yml`
 
 To publish on GitHub Pages:
 
